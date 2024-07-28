@@ -4,8 +4,9 @@ import { initializeApp } from "firebase/app";
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
+const api_key = import.meta.env.VITE_VITE_API_FIREBASE_KEY;
 const firebaseConfig = {
-  apiKey: "AIzaSyCGtVPqvS-h6ldPiZE8qYegXsR7b910csU",
+  apiKey: api_key,
   authDomain: "playtube-db274.firebaseapp.com",
   projectId: "playtube-db274",
   storageBucket: "playtube-db274.appspot.com",
