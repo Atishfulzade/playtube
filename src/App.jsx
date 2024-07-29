@@ -1,7 +1,12 @@
+import CategoryBar from "./components/CategoryBar";
+import Header from "./components/Header";
+import VideoCard from "./components/VideoCard";
+import Videos from "./components/Videos";
 function App() {
   return (
     <>
-      <h1>Hello</h1>
+      <Header />
+      <Videos />
     </>
   );
 }
