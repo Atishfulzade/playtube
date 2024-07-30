@@ -1,12 +1,16 @@
 import React from "react";
 import VideoCard from "./VideoCard";
-const Videos = () => {
+const Videos = ({ isHorizantal }) => {
   return (
-    <div className="flex flex-wrap gap-5 justify-center md:justify-start">
+    <div
+      className={`flex flex-wrap  ${
+        isHorizantal ? "flex-col" : "flex-row"
+      } gap-4 justify-center md:justify-start`}
+    >
       {Array(20)
         .fill("")
         .map((_, i) => (
-          <VideoCard key={i} />
+          <VideoCard key={i} isHorizantal={isHorizantal} />
         ))}
     </div>
   );

@@ -1,9 +1,10 @@
 import { GoHome } from "react-icons/go";
-import { BsPostcard } from "react-icons/bs";
 import { GoHistory } from "react-icons/go";
 import { BsClock } from "react-icons/bs";
 import { BiLike } from "react-icons/bi";
-import { GoDownload } from "react-icons/go";
+import { AiOutlineHome } from "react-icons/ai";
+import { AiOutlineLike } from "react-icons/ai";
+import { BsPostcard } from "react-icons/bs";
 
 const thumbnailsURL =
   "https://images.unsplash.com/photo-1719937206109-7f4e933230c8?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
@@ -33,12 +34,23 @@ const categories = [
   "Kashmir",
 ];
 const leftSidebar = [
-  { icon: <GoHome />, title: "Home" },
-  { icon: <BsPostcard />, title: "Post" },
-  { icon: <GoHistory />, title: "History" },
-  { icon: <BsClock />, title: "Watch later" },
-  { icon: <BiLike />, title: "Liked videos" },
-  { icon: <GoDownload />, title: "Downloads" },
+  { icon: <GoHome size={24} />, title: "Home", path: "/" },
+  { icon: <BsPostcard size={24} />, title: "Post", path: "post" },
+  { icon: <GoHistory size={24} />, title: "History", path: "history" },
+  { icon: <BsClock size={24} />, title: "Watch later", path: "view_later" },
+  { icon: <BiLike size={24} />, title: "Liked videos", path: "liked_video" },
+];
+
+const sidebarMobileMenu = [
+  { icon: <GoHistory size="20" />, name: "History", path: "history" },
+  { icon: <BsPostcard size="20" />, name: "Post", path: "post" },
+  { icon: <AiOutlineHome size="20" />, name: "Home", path: "/" },
+  {
+    icon: <AiOutlineLike size="20" />,
+    name: "Liked videos",
+    path: "liked_video",
+  },
+  { icon: <BsClock size={20} />, name: "Watch later", path: "view_later" },
 ];
 
 export {
@@ -48,4 +60,6 @@ export {
   description,
   videoTitle,
   categories,
+  sidebarMobileMenu,
+  leftSidebar,
 };

@@ -13,10 +13,10 @@ const CategoryBar = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
 
   return (
-    <div className="w-full flex h-10 justify-between items-center px-2">
+    <div className="md:w-[84%] relative  md:ms-52 bg-transparent flex h-10 select-none justify-between items-center px-2">
       <div
         ref={scrollRef}
-        className="w-[97%] flex  gap-3 item-center overflow-x-auto"
+        className="w-[100%] flex  gap-3 item-center overflow-x-auto"
       >
         {categories.map((category, index) => (
           <div
@@ -32,9 +32,10 @@ const CategoryBar = () => {
           </div>
         ))}
       </div>
+
       <BsChevronRight
         onClick={forwardCategory}
-        className="self-center active:bg-slate-200 text-xl transition-all hover:bg-slate-100 h-8 w-8 p-2 rounded-full cursor-pointer"
+        className="self-center   text-xl  h-9  md:w-10 w-7 transition-all z-50  p-2  cursor-pointer"
       />
     </div>
   );
