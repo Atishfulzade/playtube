@@ -12,7 +12,6 @@ const Navbar = () => {
   const settingCardRef = useRef(null);
   const [isOpen, setIsOpen] = useState(true);
   // State to track whether the user is logged in
-  const [isLogIn, setIsLogIn] = useState(true);
   const [input, setInput] = useState("");
   const [isSettingSidebar, setIsSettingSidebar] = useState(false);
   function showSettingSidebar() {
@@ -30,6 +29,7 @@ const Navbar = () => {
     };
   }, []);
   const isMobile = useSelector((state) => state.windowSize.isMobile);
+  const isLoggedIn = useSelector((state) => state.loggedStatus.isLoggedIn);
   return (
     <div className="w-full transition-all sticky top-0 bg-white z-20 px-1  md:px-6 flex items-center justify-between h-16">
       {/* Left side of the navbar */}
@@ -62,7 +62,7 @@ const Navbar = () => {
 
       {/* Right side of the navbar */}
       <div>
-        {isLogIn ? (
+        {isLoggedIn ? (
           // User icon when logged in
           <div
             onClick={showSettingSidebar}
@@ -72,8 +72,8 @@ const Navbar = () => {
           </div>
         ) : (
           // Login button when not logged in
-          <button className="w-[84px] h-[42px] bg-red-600 text-white rounded-full cursor-pointer">
-            Login
+          <button className="py-1 bg-white border-blue-500 border-2  w-fit px-5 rounded-full">
+            Log In
           </button>
         )}
       </div>

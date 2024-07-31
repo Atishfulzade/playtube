@@ -11,6 +11,7 @@ import {
 const LeftSidebar = () => {
   const navigate = useNavigate();
   const isMobile = useSelector((state) => state.windowSize.isMobile);
+  const isLoggedIn = useSelector((state) => state.loggedStatus.isLoggedIn);
   const [isActive, setIsActive] = useState("Home");
   const [isIconActive, setIsIconActive] = useState("Home");
 
@@ -52,23 +53,35 @@ const LeftSidebar = () => {
             <p className="ml-[20px] whitespace-nowrap">{item.title}</p>
           </div>
         ))}
-        <span className="h-[1px] w-full bg-slate-300"></span>
-        {leftSidebarMenu2.map((item, index) => (
-          <div
-            key={index}
-            className={`flex cursor-pointer py-2 px-3 rounded-[10px] ${
-              isActive === item.title ? "bg-slate-200" : "bg-white"
-            }`}
-            onClick={() => {
-              setIsActive(item.title);
-              navigate(item.path);
-            }}
-          >
-            {item.icon}
-            <p className="ml-[20px] whitespace-nowrap">{item.title}</p>
+        <span className="h-[1px] w-full bg-slate-300" />
+        {isLoggedIn ? (
+          leftSidebarMenu2.map((item, index) => (
+            <div
+              key={index}
+              className={`flex cursor-pointer py-2 px-3 rounded-[10px] ${
+                isActive === item.title ? "bg-slate-200" : "bg-white"
+              }`}
+              onClick={() => {
+                setIsActive(item.title);
+                navigate(item.path);
+              }}
+            >
+              {item.icon}
+              <p className="ml-[20px] whitespace-nowrap">{item.title}</p>
+            </div>
+          ))
+        ) : (
+          <div className="flex w-full flex-col gap-5">
+            <p className="flex-wrap text-sm text-start ">
+              Sign in to like videos,
+              <br /> comment, and subscribe.
+            </p>
+            <button className="py-1 bg-white border-blue-500 border-2  w-fit px-5 rounded-full">
+              Log In
+            </button>
           </div>
-        ))}
-        <span className="h-[1px] w-full bg-slate-300"></span>
+        )}
+        <span className="h-[1px] w-full bg-slate-300" />
         <h3>Explore</h3>
         {exploreMenu.map((item, index) => (
           <div
