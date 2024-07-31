@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { HiOutlineMenu, HiOutlineMicrophone } from "react-icons/hi";
 import { FiUser } from "react-icons/fi";
 import { useSelector } from "react-redux";
@@ -9,6 +9,7 @@ import SettingSidebar from "./SettingSidebar";
 import { FiSearch } from "react-icons/fi";
 
 const Navbar = () => {
+  const settingCardRef = useRef(null);
   const [isOpen, setIsOpen] = useState(true);
   // State to track whether the user is logged in
   const [isLogIn, setIsLogIn] = useState(true);
@@ -17,6 +18,17 @@ const Navbar = () => {
   function showSettingSidebar() {
     setIsSettingSidebar(!isSettingSidebar);
   }
+  const handleCloseSettingBar = (e) => {
+    if (settingCardRef.current && !settingCardRef.current.contains(e.target)) {
+      setIsSettingSidebar(false);
+    }
+  };
+  useEffect(() => {
+    document.addEventListener("mousedown", handleCloseSettingBar);
+    return () => {
+      document.removeEventListener("mousedown", handleCloseSettingBar);
+    };
+  }, []);
   const isMobile = useSelector((state) => state.windowSize.isMobile);
   return (
     <div className="w-full transition-all sticky top-0 bg-white z-20 px-1  md:px-6 flex items-center justify-between h-16">
@@ -65,7 +77,7 @@ const Navbar = () => {
           </button>
         )}
       </div>
-      {isSettingSidebar && <SettingSidebar />}
+      {isSettingSidebar && <SettingSidebar settingCardRef={settingCardRef} />}
     </div>
   );
 };

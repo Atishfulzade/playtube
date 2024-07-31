@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { SlSocialGoogle } from "react-icons/sl";
+import { FcGoogle } from "react-icons/fc";
 import { SlGlobe } from "react-icons/sl";
 import { PiSignIn } from "react-icons/pi";
 import { GoMoon } from "react-icons/go";
 import { IoLanguageOutline } from "react-icons/io5";
 import { LiaAngleRightSolid } from "react-icons/lia";
 import SettingSidebarOption from "./SettingSideBarOption";
-function SettingSidebar() {
+function SettingSidebar({ settingCardRef }) {
   const [appearance, setAppearance] = useState("Use device theme");
   const [language, setLanguage] = useState("English");
   const [location, setLocation] = useState("India");
@@ -14,7 +14,7 @@ function SettingSidebar() {
   const [isSettingSidebar, setIsSettingSidebar] = useState(true);
 
   const settingSidebarData = [
-    { id: 1, icon: <SlSocialGoogle size="22" />, name: "Google Account" },
+    { id: 1, icon: <FcGoogle size="22" />, name: "Google Account" },
     { id: 2, icon: <PiSignIn size="22" />, name: "Sign out" },
     { id: 3, icon: <GoMoon size="22" />, name: `Appearance: ${appearance}` },
     {
@@ -35,6 +35,7 @@ function SettingSidebar() {
   return (
     <>
       <div
+        ref={settingCardRef}
         className={`w-fit  absolute top-12 py-3 ${
           isSettingSidebar ? "block" : "hidden"
         } right-5 bg-white shadow shadow-slate-400 rounded-md`}
