@@ -3,6 +3,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 *,
 html {
   box-sizing: border-box;
@@ -10,6 +11,34 @@ html {
   padding: 0;
   font-family: "Lato", sans-serif;
 }
-::-webkit-scrollbar {
+
+/* Hide scrollbar for .categorybar */
+.categorybar::-webkit-scrollbar {
   display: none;
 }
+
+.categorybar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+/* Handle */
+/* ::-webkit-scrollbar-thumb {
+  background: rgb(189, 189, 189);
+  border-radius: 10px;
+  cursor: grab;
+  height: 10px;
+} */
+
+/* Handle on hover */
+/* ::-webkit-scrollbar-thumb:hover {
+  background: #a2a2a2;
+} */

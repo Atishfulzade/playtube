@@ -13,10 +13,10 @@ const CategoryBar = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
 
   return (
-    <div className="md:w-[84%] relative  md:ms-52 bg-transparent flex h-10 select-none justify-between items-center px-2">
+    <div className="md:w-[84%]  relative  md:ms-64 bg-transparent flex h-10 select-none justify-between items-center px-2">
       <div
         ref={scrollRef}
-        className="w-[100%] flex  gap-3 item-center overflow-x-auto"
+        className="w-[100%] flex  gap-3 categorybar item-center overflow-x-auto"
       >
         {categories.map((category, index) => (
           <div

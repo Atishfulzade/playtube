@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import { HiOutlineMenu, HiOutlineMicrophone } from "react-icons/hi";
 import { FiUser } from "react-icons/fi";
+import { useSelector } from "react-redux";
 import { logo } from "../assets";
 import SearchBar from "./SearchBar";
 
 const Navbar = () => {
   // State to track whether the user is logged in
   const [isLogIn, setIsLogIn] = useState(false);
-
+  const [input, setInput] = useState("");
+  const isMobile = useSelector((state) => state.windowSize.isMobile);
   return (
     <div className="w-full px-1 md:px-6 flex items-center justify-between h-16">
       {/* Left side of the navbar */}
@@ -20,7 +22,7 @@ const Navbar = () => {
       </div>
       <div className="flex items-center justify-between">
         {/* Search bar component */}
-        <SearchBar />
+        <SearchBar setInput={setInput} input={input} />
 
         {/* Microphone icon, visible only on medium screens and larger */}
         <div className="hidden w-[40px] h-[40px] ml-3 border text-slate-700 border-slate-300 rounded-full md:flex items-center justify-center">
