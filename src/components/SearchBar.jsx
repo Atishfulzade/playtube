@@ -1,18 +1,34 @@
 import React from "react";
 import { FiSearch } from "react-icons/fi";
-const SearchBar = ({ setInput, input }) => {
+import SuggestionPage from "./SuggestionPage";
+import { useSelector } from "react-redux";
+useSelector;
+const SearchBar = ({ setInput, input, isOpen, setIsOpen }) => {
+  const isMobile = useSelector((state) => state.windowSize.isMobile);
   return (
     <>
-      <input
-        type="text"
-        value={input}
-        placeholder="Search"
-        onChange={(e) => setInput(e.target.value)}
-        className=" hidden md:block text-base text-slate-800 indent-5 md:w-[500px] md:h-[40px] md:outline-none md:border md:border-slate-300 md:border-r-0 md:rounded-tl-full md:rounded-bl-full"
-      />
-      <button className="flex items-center justify-center text-slate-700 border h-[40px] w-[40px] md:w-[48px] border-slate-300 rounded-full md:rounded-l-none  ">
-        <FiSearch className="text-[20px]" />
-      </button>
+      <div className="flex  relative">
+        <input
+          type="text"
+          value={input}
+          placeholder="Search"
+          onChange={(e) => setInput(e.target.value)}
+          className=" hidden md:block text-base text-slate-800 indent-5 md:w-[500px] md:h-[40px] md:outline-none md:border md:border-slate-300 md:border-r-0 md:rounded-tl-full md:rounded-bl-full"
+        />
+        <button
+          type="submit"
+          className={`flex items-center justify-center text-slate-700  h-[40px] w-[40px] md:w-[48px] ${
+            isMobile ? "border-none text-xl" : "border border-slate-300"
+          } rounded-full md:rounded-l-none`}
+        >
+          <FiSearch />
+        </button>
+      </div>
+      {input.length > 0 && isOpen ? (
+        <SuggestionPage isMobile={isMobile} setIsOpen={setIsOpen} />
+      ) : (
+        ""
+      )}
     </>
   );
 };

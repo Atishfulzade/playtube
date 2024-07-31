@@ -35,8 +35,8 @@ const LeftSidebar = () => {
     </div>
   ) : (
     // Desktop view sidebar
-    <div className="px-6 leftbar h-[80vh] overflow-y-scroll pb-7 bg-white z-50 md:sticky left-0 top-28">
-      <div className="mt-[10px] leftbar flex flex-col gap-3">
+    <div className="px-6 leftbar w-[%] h-[89vh] overflow-y-scroll pb-7  z-50 sticky left-0 top-16">
+      <div className=" leftbar flex flex-col gap-3">
         {leftSidebarMenu1.map((item, index) => (
           <div
             key={index}

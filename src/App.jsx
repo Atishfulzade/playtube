@@ -11,6 +11,7 @@ import {
   WatchLater,
   LikedVideos,
   Post,
+  ErrorPage,
 } from "./pages";
 import { useEffect } from "react";
 function App() {
@@ -38,6 +39,7 @@ function App() {
           <Route path="view_later" element={<WatchLater />} />
           <Route path="liked_video" element={<LikedVideos />} />
           <Route path="post" element={<Post />} />
+          <Route path="*" element={<ErrorPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

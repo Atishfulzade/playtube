@@ -6,6 +6,7 @@ import { default as History } from "./History";
 import { default as LikedVideos } from "./LikedVideos";
 import { default as WatchLater } from "./WatchLater";
 import { default as Post } from "./Post";
+import { default as ErrorPage } from "./ErrorPage";
 export {
   ChannelDetails,
   SearchFeed,
@@ -15,4 +16,5 @@ export {
   WatchLater,
   LikedVideos,
   Post,
+  ErrorPage,
 };

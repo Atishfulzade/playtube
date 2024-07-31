@@ -4,14 +4,22 @@ import { FiUser } from "react-icons/fi";
 import { useSelector } from "react-redux";
 import { logo } from "../assets";
 import SearchBar from "./SearchBar";
+import { channelIconURL, channelName } from "../utils/constant";
+import SettingSidebar from "./SettingSidebar";
+import { FiSearch } from "react-icons/fi";
 
 const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(true);
   // State to track whether the user is logged in
-  const [isLogIn, setIsLogIn] = useState(false);
+  const [isLogIn, setIsLogIn] = useState(true);
   const [input, setInput] = useState("");
+  const [isSettingSidebar, setIsSettingSidebar] = useState(false);
+  function showSettingSidebar() {
+    setIsSettingSidebar(!isSettingSidebar);
+  }
   const isMobile = useSelector((state) => state.windowSize.isMobile);
   return (
-    <div className="w-full px-1 md:px-6 flex items-center justify-between h-16">
+    <div className="w-full transition-all sticky top-0 bg-white z-20 px-1  md:px-6 flex items-center justify-between h-16">
       {/* Left side of the navbar */}
       <div className="flex items-center ">
         {/* Hamburger menu icon, visible only on medium screens and larger */}
@@ -22,10 +30,20 @@ const Navbar = () => {
       </div>
       <div className="flex items-center justify-between">
         {/* Search bar component */}
-        <SearchBar setInput={setInput} input={input} />
+        {isMobile ? (
+          <FiSearch onClick={() => isMobile && setIsOpen(!isOpen)} />
+        ) : (
+          <SearchBar
+            setInput={setInput}
+            input={input}
+            isMobile={isMobile}
+            isOpen={isOpen}
+            setIsOpen={setIsOpen}
+          />
+        )}
 
         {/* Microphone icon, visible only on medium screens and larger */}
-        <div className="hidden w-[40px] h-[40px] ml-3 border text-slate-700 border-slate-300 rounded-full md:flex items-center justify-center">
+        <div className="hidden w-[40px] cursor-pointer h-[40px] ml-3 border text-slate-700 border-slate-300 rounded-full md:flex items-center justify-center">
           <HiOutlineMicrophone className="text-[20px]" />
         </div>
       </div>
@@ -34,7 +52,10 @@ const Navbar = () => {
       <div>
         {isLogIn ? (
           // User icon when logged in
-          <div className="w-[40px] h-[40px] border border-[#b3b3b3] rounded-full flex items-center justify-center">
+          <div
+            onClick={showSettingSidebar}
+            className="w-[40px] h-[40px] border border-[#b3b3b3] rounded-full flex items-center justify-center"
+          >
             <FiUser className="text-[20px]" />
           </div>
         ) : (
@@ -44,6 +65,7 @@ const Navbar = () => {
           </button>
         )}
       </div>
+      {isSettingSidebar && <SettingSidebar />}
     </div>
   );
 };

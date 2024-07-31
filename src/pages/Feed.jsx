@@ -1,8 +1,9 @@
 import React from "react";
-import { Videos } from "../components";
+import { CategoryBar, Videos } from "../components";
 const Feed = () => {
   return (
-    <div className="md:ps-5 md:w-[82%]">
+    <div className="flex flex-col w-full  justify-start">
+      <CategoryBar />
       <Videos isHorizantal={false} />
     </div>
   );
