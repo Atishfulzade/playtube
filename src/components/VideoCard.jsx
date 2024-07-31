@@ -41,7 +41,7 @@ const VideoCard = ({ isHorizantal }) => {
           )}
           <div className="ml-2 flex flex-col">
             <div className="flex">
-              <h3 className="text-sm w-[95%] pt-0 md:text-xl font-bold line-clamp-2 text-slate-900">
+              <h3 className="text-sm w-[95%] pt-0 md:text-[17px] font-semibold line-clamp-2 text-slate-900">
                 {videoTitle}
               </h3>
               <BsThreeDotsVertical

@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import {
   exploreMenu,
   leftSidebarMenu1,
@@ -17,15 +20,38 @@ const LeftSidebar = () => {
 
   return isMobile ? (
     <div className="fixed left-0 z-50 bottom-0 bg-slate-100 py-1 flex items-center justify-around w-[100%]">
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+        transition:Zoom
+      />
       {sidebarMobileMenu.map((item, index) => (
         <div
           key={index}
           className={`w-[40px] h-[40px] flex items-center text-center justify-center ${
             isIconActive === item.name
-              ? "bg-slate-800 text-white  rounded-full"
+              ? "bg-slate-800 text-white rounded-full"
               : "bg-slate-100"
+          } ${
+            !isLoggedIn && !item.access
+              ? "cursor-not-allowed opacity-50"
+              : "cursor-pointer opacity-100"
           }`}
           onClick={() => {
+            if (!isLoggedIn && !item.access) {
+              toast(
+                " Sign in to like videos,history, and save for later view."
+              );
+              return;
+            }
             setIsIconActive(item.name);
             navigate(item.path);
           }}
@@ -36,8 +62,8 @@ const LeftSidebar = () => {
     </div>
   ) : (
     // Desktop view sidebar
-    <div className="px-6 leftbar w-[%] h-[89vh] overflow-y-scroll pb-7  z-50 sticky left-0 top-16">
-      <div className=" leftbar flex flex-col gap-3">
+    <div className="px-6 leftbar w-[100%] h-[89vh] overflow-y-scroll pb-7 z-50 sticky left-0 top-16">
+      <div className="leftbar flex flex-col gap-3">
         {leftSidebarMenu1.map((item, index) => (
           <div
             key={index}
@@ -71,12 +97,16 @@ const LeftSidebar = () => {
             </div>
           ))
         ) : (
-          <div className="flex w-full flex-col gap-5">
-            <p className="flex-wrap text-sm text-start ">
+          <div className="flex w-full flex-col gap-5 justify-center">
+            <p className="flex-wrap text-sm md:text-[15px] text-start ">
               Sign in to like videos,
-              <br /> comment, and subscribe.
+              <br /> history, and save <br />
+              for later view.
             </p>
-            <button className="py-1 bg-white border-blue-500 border-2  w-fit px-5 rounded-full">
+            <button
+              className="py-1 bg-white border-blue-500 border text-blue-500 w-fit px-5 rounded-full"
+              onClick={() => navigate("/login")}
+            >
               Log In
             </button>
           </div>

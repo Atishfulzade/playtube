@@ -72,7 +72,7 @@ const Navbar = () => {
           </div>
         ) : (
           // Login button when not logged in
-          <button className="py-1 bg-white border-blue-500 border-2  w-fit px-5 rounded-full">
+          <button className="py-1 bg-white border-blue-500 border text-blue-500  w-fit px-5 rounded-full">
             Log In
           </button>
         )}

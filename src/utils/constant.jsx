@@ -70,15 +70,26 @@ const exploreMenu = [
 ];
 
 const sidebarMobileMenu = [
-  { icon: <GoHistory size="20" />, name: "History", path: "history" },
-  { icon: <BsPostcard size="20" />, name: "Post", path: "post" },
-  { icon: <AiOutlineHome size="20" />, name: "Home", path: "/" },
+  {
+    icon: <GoHistory size="20" />,
+    name: "History",
+    path: "history",
+    access: false,
+  },
+  { icon: <BsPostcard size="20" />, name: "Post", path: "post", access: false },
+  { icon: <AiOutlineHome size="20" />, name: "Home", path: "/", access: true },
   {
     icon: <AiOutlineLike size="20" />,
     name: "Liked videos",
     path: "liked_video",
+    access: false,
   },
-  { icon: <BsClock size={20} />, name: "Watch later", path: "view_later" },
+  {
+    icon: <BsClock size={20} />,
+    name: "Watch later",
+    path: "view_later",
+    access: false,
+  },
 ];
 
 export {
