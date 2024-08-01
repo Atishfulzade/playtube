@@ -39,14 +39,14 @@ function SettingSidebarOption({
           <div
             className={`flex items-center py-2 px-3 `}
             key={index}
-            onClick={() => setSelectOption(item)}
+            onClick={() => setSelectOption(item.name)}
           >
-            {item === selectOption ? (
+            {item.name === selectOption ? (
               <IoCheckmarkSharp />
             ) : (
               <div className="pl-[15px]"></div>
             )}
-            <p className="ml-[20px]">{item}</p>
+            <p className="ml-[20px]">{item.name}</p>
           </div>
         ))}
       </div>

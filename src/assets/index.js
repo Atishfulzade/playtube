@@ -1,2 +1,3 @@
 import logo from "./logo.svg";
-export { logo };
+import userPng from "./user.png";
+export { logo, userPng };

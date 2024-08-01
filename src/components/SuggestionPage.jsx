@@ -10,15 +10,19 @@ const SuggestionPage = ({ input, isOpen, setIsOpen }) => {
     { id: 2, title: "Comedy ka home" },
     { id: 3, title: "Comedy ka as" },
   ];
+  console.log("yes");
   return (
-    <div>
-      {isMobile && isOpen ? <SearchBar input={input} /> : ""}
-
-      <div className="absolute min-h[300px] p-3 h-[500px] overflow-y-auto w-[600px] gap-1 items-start flex flex-col bg-white top-14 right-96 border rounded-lg z-50">
+    <div
+      className={`bg-red-600 right-0 absolute md:right-96 min-h[300px] p-3 h-[500px] overflow-y-auto md:w-[600px] w-full gap-1 items-start flex ${
+        isMobile && "right-0"
+      } flex-col top-14  border rounded-lg z-50`}
+    >
+      {isMobile && isOpen && <SearchBar />}
+      <div className="p-3  gap-1 items-start flex flex-col  top-14  ">
         <div className="flex w-full cursor-pointer  justify-end">
           {isMobile ? (
             <MdOutlineClose
-              onClick={() => setIsOpen(false)}
+              onClick={() => setIsOpen(!isOpen)}
               className="hover:bg-slate-100 p-1 text-2xl rounded-md "
             />
           ) : (
@@ -31,6 +35,7 @@ const SuggestionPage = ({ input, isOpen, setIsOpen }) => {
             className="px-2 py-2 rounded-sm md:text-[20px] text-sm leading-3 font-semibold cursor-pointer w-full hover:bg-slate-100"
           >
             {suggestion.title}
+            {isOpen}
           </div>
         ))}
       </div>

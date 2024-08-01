@@ -6,7 +6,7 @@ useSelector;
 const SearchBar = ({ setInput, input, isOpen, setIsOpen }) => {
   const isMobile = useSelector((state) => state.windowSize.isMobile);
   return (
-    <>
+    <div>
       <div className="flex  relative">
         <input
           type="text"
@@ -24,12 +24,10 @@ const SearchBar = ({ setInput, input, isOpen, setIsOpen }) => {
           <FiSearch />
         </button>
       </div>
-      {input.length > 0 && isOpen ? (
-        <SuggestionPage isMobile={isMobile} setIsOpen={setIsOpen} />
-      ) : (
-        ""
+      {input?.length > 0 && !isMobile && (
+        <SuggestionPage isOpen={isOpen} setIsOpen={setIsOpen} />
       )}
-    </>
+    </div>
   );
 };
 

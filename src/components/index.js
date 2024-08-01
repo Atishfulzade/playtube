@@ -10,6 +10,7 @@ import { default as Videos } from "./Videos";
 import { default as VideoCard } from "./VideoCard";
 import { default as SuggestionPage } from "./SuggestionPage";
 import { default as SettingSideBarOption } from "./SettingSideBarOption";
+import { default as AuthenticationPage } from "./AuthenticationPage";
 
 export {
   Navbar,
@@ -24,4 +25,5 @@ export {
   SuggestionPage,
   Videos,
   VideoCard,
+  AuthenticationPage,
 };
