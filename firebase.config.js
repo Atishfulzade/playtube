@@ -6,12 +6,7 @@ import {
   setPersistence,
   browserLocalPersistence,
 } from "firebase/auth"; // Correct import path
-import firebase from "firebase/compat/app"; // If you use any compat libraries
 
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
 const api_key = import.meta.env.VITE_VITE_API_FIREBASE_KEY;
 const firebaseConfig = {
   apiKey: api_key,

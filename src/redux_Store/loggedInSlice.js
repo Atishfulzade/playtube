@@ -4,14 +4,19 @@ const initialState = {
   user: null,
 };
 export const loggedInSlice = createSlice({
-  name: "loggedStatus",
+  name: "authenticate",
   initialState,
   reducers: {
     setIsLoggedIn: (state, action) => {
       state.isLoggedIn = action.payload;
     },
     setUser: (state, action) => {
-      state.user = action.payload;
+      if (action.payload) {
+        const { uid, email, displayName, photoURL } = action.payload;
+        state.user = { uid, email, displayName, photoURL };
+      } else {
+        state.user = null;
+      }
     },
   },
 });

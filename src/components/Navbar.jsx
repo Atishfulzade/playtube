@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 import { HiOutlineMenu, HiOutlineMicrophone } from "react-icons/hi";
 import { FiUser } from "react-icons/fi";
 import { useSelector } from "react-redux";
-import { logo } from "../assets";
+import { logo, userPng } from "../assets";
 import SearchBar from "./SearchBar";
 import { channelIconURL, channelName } from "../utils/constant";
 import SettingSidebar from "./SettingSidebar";
@@ -16,6 +16,8 @@ const Navbar = () => {
   // State to track whether the user is logged in
   const [input, setInput] = useState("");
   const [isSettingSidebar, setIsSettingSidebar] = useState(false);
+  const userInfo = useSelector((state) => state.loggedStatus.user);
+
   const navigate = useNavigate();
   function showSettingSidebar() {
     setIsSettingSidebar(!isSettingSidebar);
@@ -76,9 +78,13 @@ const Navbar = () => {
           // User icon when logged in
           <div
             onClick={showSettingSidebar}
-            className="w-[40px] h-[40px] border border-[#b3b3b3] rounded-full flex items-center justify-center"
+            className="w-[40px] h-[40px] border border-[#b3b3b3] overflow-hidden rounded-full flex items-center justify-center"
           >
-            <FiUser className="text-[20px]" />
+            <img
+              src={userInfo.photoURL || userPng}
+              alt="ProfilePhoto"
+              className="h-full w-full object-cover cursor-pointer"
+            />
           </div>
         ) : (
           // Login button when not logged in
