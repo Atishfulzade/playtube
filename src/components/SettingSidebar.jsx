@@ -13,10 +13,10 @@ import { setIsLoggedIn, setUser } from "../redux_Store/loggedInSlice";
 import { userPng } from "../assets";
 import SettingSidebarOption from "./SettingSideBarOption";
 import { useNavigate } from "react-router-dom";
-import { countries, languages } from "../utils/constant";
+import { countries, deviceTheme, languages } from "../utils/constant";
 
 function SettingSidebar({ settingCardRef }) {
-  const [appearance, setAppearance] = useState("Use device theme");
+  const [appearance, setAppearance] = useState("Device theme");
   const [language, setLanguage] = useState("English");
   const [location, setLocation] = useState("India");
   const [isSettingSidebar, setIsSettingSidebar] = useState(true);
@@ -94,7 +94,7 @@ function SettingSidebar({ settingCardRef }) {
       >
         <div className="flex cursor-default items-center px-3 py-2 border-b-[1px]">
           <img
-            src={!userInfo?.photoURL && userPng}
+            src={userInfo?.photoURL || userPng}
             alt={userInfo?.displayName}
             className="w-12 h-12 rounded-full"
           />
@@ -131,7 +131,7 @@ function SettingSidebar({ settingCardRef }) {
       {settingOptionsId === 3 && (
         <SettingSidebarOption
           heading={"Appearance"}
-          arrData={["Use device theme", "Dark theme", "Light theme"]}
+          arrData={deviceTheme}
           setIsSettingSidebar={setIsSettingSidebar}
           selectOption={appearance}
           setSelectOption={setAppearance}

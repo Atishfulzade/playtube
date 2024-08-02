@@ -4,19 +4,19 @@ import { useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 import Layout from "./components/Layout";
 import { setIsMobile } from "./redux_Store/windowSizeSlice";
+import { lazy, Suspense } from "react";
+import { AuthenticationPage, Loader } from "./components";
 
-import {
-  ChannelDetails,
-  Feed,
-  SearchFeed,
-  VideoDetail,
-  History,
-  WatchLater,
-  LikedVideos,
-  Post,
-  ErrorPage,
-} from "./pages";
-import { AuthenticationPage } from "./components";
+// Lazy load pages
+const ChannelDetails = lazy(() => import("./pages/ChannelDetails"));
+const Feed = lazy(() => import("./pages/Feed"));
+const SearchFeed = lazy(() => import("./pages/SearchFeed"));
+const VideoDetail = lazy(() => import("./pages/VideoDetail"));
+const History = lazy(() => import("./pages/History"));
+const WatchLater = lazy(() => import("./pages/WatchLater"));
+const LikedVideos = lazy(() => import("./pages/LikedVideos"));
+const ErrorPage = lazy(() => import("./pages/ErrorPage"));
+const Post = lazy(() => import("./pages/Post"));
 
 function App() {
   const dispatch = useDispatch();
@@ -27,8 +27,6 @@ function App() {
     const isMobile = window.innerWidth <= 768;
     dispatch(setIsMobile(isMobile));
   };
-
-  // Handle authentication state change
 
   // Handle window resize event
   useEffect(() => {
@@ -55,18 +53,81 @@ function App() {
       />
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<Feed />} />
-          <Route path="search/:searchTerm" element={<SearchFeed />} />
-          <Route path="channel/:id" element={<ChannelDetails />} />
-          <Route path="video/:id" element={<VideoDetail />} />
-          <Route path="history" element={<History />} />
-          <Route path="view_later" element={<WatchLater />} />
-          <Route path="liked_video" element={<LikedVideos />} />
+          <Route
+            index
+            element={
+              <Suspense fallback={<Loader />}>
+                <Feed />
+              </Suspense>
+            }
+          />
+          <Route
+            path="search/:searchTerm"
+            element={
+              <Suspense fallback={<Loader />}>
+                <SearchFeed />
+              </Suspense>
+            }
+          />
+          <Route
+            path="channel/:id"
+            element={
+              <Suspense fallback={<Loader />}>
+                <ChannelDetails />
+              </Suspense>
+            }
+          />
+          <Route
+            path="video/:id"
+            element={
+              <Suspense fallback={<Loader />}>
+                <VideoDetail />
+              </Suspense>
+            }
+          />
+          <Route
+            path="history"
+            element={
+              <Suspense fallback={<Loader />}>
+                <History />
+              </Suspense>
+            }
+          />
+          <Route
+            path="view_later"
+            element={
+              <Suspense fallback={<Loader />}>
+                <WatchLater />
+              </Suspense>
+            }
+          />
+          <Route
+            path="liked_video"
+            element={
+              <Suspense fallback={<Loader />}>
+                <LikedVideos />
+              </Suspense>
+            }
+          />
           {!isLoggedIn && (
             <Route path="authenticate" element={<AuthenticationPage />} />
           )}
-          <Route path="post" element={<Post />} />
-          <Route path="*" element={<ErrorPage />} />
+          <Route
+            path="post"
+            element={
+              <Suspense fallback={<Loader />}>
+                <Post />
+              </Suspense>
+            }
+          />
+          <Route
+            path="*"
+            element={
+              <Suspense fallback={<Loader />}>
+                <ErrorPage />
+              </Suspense>
+            }
+          />
         </Route>
       </Routes>
     </BrowserRouter>

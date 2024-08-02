@@ -8,7 +8,8 @@ import {
   videoTitle,
   description,
 } from "../utils/constant";
-const VideoCard = ({ isHorizantal }) => {
+import { formatViews } from "../utils/formatViews";
+const VideoCard = ({ isHorizantal, item }) => {
   const islive = false;
 
   return (
@@ -23,7 +24,7 @@ const VideoCard = ({ isHorizantal }) => {
         className={`h-[167px]  rounded-[10px] ${
           isHorizantal ? " h-full md:w-[290px] w-[55%]" : "w-full"
         } `}
-        src={thumbnailsURL}
+        src={item?.video?.thumbnails[0]?.url}
         alt={channelName}
         loading="lazy"
       />
@@ -33,7 +34,7 @@ const VideoCard = ({ isHorizantal }) => {
             ""
           ) : (
             <img
-              src={channelIconURL}
+              src={item?.video?.author?.avatar[0]?.url}
               alt={channelName}
               loading="lazy"
               className="h-10 w-10 rounded-full object-cover"
@@ -42,7 +43,7 @@ const VideoCard = ({ isHorizantal }) => {
           <div className="ml-2 flex flex-col">
             <div className="flex">
               <h3 className="text-sm w-[95%] pt-0 md:text-[17px] font-semibold line-clamp-2 text-slate-900">
-                {videoTitle}
+                {item?.video?.title}
               </h3>
               <BsThreeDotsVertical
                 className={
@@ -54,23 +55,29 @@ const VideoCard = ({ isHorizantal }) => {
             </div>
             <div className="flex items-end gap-2">
               <div className="flex flex-col">
-                <h4 className="line-clamp-1">{channelName}</h4>
+                <h4 className="line-clamp-1">{item?.video?.author?.title}</h4>
                 <div
                   className={`flex gap-2 w-full  whitespace-nowrap${
                     isHorizantal ? "flex-row " : "flex-row "
                   } text-[12px]   text-slate-600`}
                 >
-                  <span className="whitespace-nowrap">450 views</span>
-                  <span className="whitespace-nowrap">4 months ago</span>
+                  <span className="whitespace-nowrap">
+                    {item?.video?.isLiveNow
+                      ? item?.video?.stats?.viewers + " watching"
+                      : formatViews(item?.video?.stats?.views) + " views"}
+                  </span>
+                  <span className="whitespace-nowrap">
+                    {item?.video?.publishedTimeText}
+                  </span>
                 </div>
                 {isHorizantal && (
                   <p className="w-full line-clamp-2 text-[13px] md:text-xl">
-                    {description}
+                    {item?.video?.descriptionSnippet}
                   </p>
                 )}
               </div>
-              {islive ? (
-                <span className="bg-red-600 py-[2px] flex items-center justify-center h-fit px-3 text-center mb-0 text-white rounded">
+              {item?.video?.isLiveNow ? (
+                <span className="bg-red-600 absolute right-0 py-[2px] flex items-center justify-center h-fit px-3 text-center mb-0 text-white rounded">
                   Live
                 </span>
               ) : (

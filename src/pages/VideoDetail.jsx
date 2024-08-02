@@ -1,19 +1,23 @@
 import React, { useState } from "react";
 import { Videos } from "../components";
 import { BsThreeDotsVertical } from "react-icons/bs";
+import { useRef } from "react";
 import {
   AiOutlineLike,
   AiOutlineDislike,
   AiOutlineShareAlt,
 } from "react-icons/ai";
 import { BsDownload } from "react-icons/bs";
-import ReactPlayer from "react-player";
+import ReactPlayer from "react-player/youtube";
 import { useParams } from "react-router-dom";
 import Comments from "../components/Comments";
 
 const VideoDetail = () => {
   const { id } = useParams();
-  console.log(id);
+  const [playing, setPlaying] = useState(false);
+  const [muted, setMuted] = useState(false);
+  const [volume, setVolume] = useState(0.8);
+  const playerRef = useRef(null);
   const description =
     "In hac habitasse platea dictumst. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Nunc ullamcorper ex a nibh pretium, sed dignissim ex euismod. Maecenas ac pulvinar tortor. Morbi lorem augue, maximus at gravida non, gravida id dui. Maecenas odio ex, ornare eu eleifend non, feugiat id nisl. Praesent eget nisl auctor, fringilla ante quis, condimentum lacus. Nullam ac consectetur massa, egestas semper magna. Quisque imperdiet, magna vel auctor commodo, orci ipsum commodo arcu, a molestie est ex non orci. Donec a mauris id tortor facilisis varius ultrices eget tellus. Phasellus eget euismod tellus. Fusce tincidunt ultrices erat eget consequat. Aliquam arcu risus, fringilla vehicula fringilla sed, lacinia eu leo.";
 
@@ -21,6 +25,17 @@ const VideoDetail = () => {
   function getFullDescription() {
     setFullDescription(true);
   }
+  const togglePlayPause = () => {
+    setPlaying(!playing);
+  };
+
+  const toggleMute = () => {
+    setMuted(!muted);
+  };
+
+  const handleVolumeChange = (e) => {
+    setVolume(parseFloat(e.target.value));
+  };
 
   return (
     <div className="flex flex-col md:flex-row w-full justify-start gap-10 ">
@@ -28,10 +43,14 @@ const VideoDetail = () => {
         <div className="w-full h-[240px] md:h-[480px] bg-slate-500 rounded">
           <ReactPlayer
             className="player"
-            url={["https://www.youtube.com/watch?v=f7Ss2BMpDnI"]}
-            controls={true}
+            ref={playerRef}
+            url="https://www.youtube.com/watch?v=f7Ss2BMpDnI"
+            playing={true}
+            muted={false}
+            controls={true} // Disable default controls
           />
         </div>
+
         <div className="flex items-center justify-between">
           <h3 className="text-[18px] md:text-[24px] mt-3 font-[500] text-slate-900">
             Aliquip qui culpa commodo incididunt ullamco non duis n...
@@ -100,17 +119,6 @@ const VideoDetail = () => {
           <p className="text-[16px] md:text-[20px] font-semibold">
             28 Comments
           </p>
-          <div className="flex items-center gap-2">
-            <img
-              src="https://png.pngtree.com/png-vector/20191101/ourmid/pngtree-cartoon-color-simple-male-avatar-png-image_1934459.jpg"
-              alt="user avatar"
-              className="w-[48px] h-[48px] rounded-full"
-            />
-            <input
-              placeholder="Add a comment..."
-              className="outline-none border-b-[1px] w-full border-[#535353]"
-            />
-          </div>
 
           <Comments />
           <Comments />

@@ -1,11 +1,13 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
 import {
   getAuth,
   GoogleAuthProvider,
   setPersistence,
   browserLocalPersistence,
 } from "firebase/auth"; // Correct import path
+import firebase from "firebase/compat/app";
 
 const api_key = import.meta.env.VITE_VITE_API_FIREBASE_KEY;
 const firebaseConfig = {
@@ -24,3 +26,5 @@ const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const googleProvider = new GoogleAuthProvider();
 setPersistence(auth, browserLocalPersistence);
+const db = getFirestore(app);
+export { db };

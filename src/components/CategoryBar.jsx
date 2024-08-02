@@ -2,15 +2,13 @@ import React, { useRef, useState } from "react";
 import { BsChevronRight } from "react-icons/bs";
 import { categories } from "../utils/constant";
 
-const CategoryBar = () => {
+const CategoryBar = ({ selectedCategory, setSelectedCategory }) => {
   const scrollRef = useRef(null);
   const forwardCategory = () => {
     if (scrollRef.current) {
       scrollRef.current.scrollBy({ left: 200, behavior: "smooth" });
     }
   };
-
-  const [selectedCategory, setSelectedCategory] = useState("All");
 
   return (
     <div className="md:w-full z-10 w-[95%] mx-auto  sticky top-[63px] md:top-[64px]   bg-white  flex h-12 select-none justify-between items-center py-5">
