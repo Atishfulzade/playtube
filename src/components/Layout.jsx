@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { setIsLoggedIn, setUser } from "../redux_Store/loggedInSlice";
 import { auth } from "../../firebase.config";
 import LeftSidebar from "./LeftSidebar";
@@ -11,6 +12,8 @@ import Navbar from "./Navbar";
 const Layout = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
+  const absolutePath = location.pathname.replace(/[0-9/]/g, "");
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -31,7 +34,8 @@ const Layout = () => {
     <div className="flex flex-col">
       <Navbar />
       <div className="flex w-full">
-        <LeftSidebar />
+        {absolutePath !== "video" && <LeftSidebar />}
+
         <div className="w-full md:w-[80%]">
           <Outlet />
         </div>

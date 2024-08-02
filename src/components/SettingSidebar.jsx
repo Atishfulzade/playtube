@@ -92,11 +92,11 @@ function SettingSidebar({ settingCardRef }) {
           isSettingSidebar ? "block" : "hidden"
         } right-5 bg-white shadow shadow-slate-400 rounded-md`}
       >
-        <div className="flex cursor-pointer items-center px-3 py-2 border-b-[1px]">
+        <div className="flex cursor-default items-center px-3 py-2 border-b-[1px]">
           <img
-            src={userInfo?.photoURL || userPng}
+            src={!userInfo?.photoURL && userPng}
             alt={userInfo?.displayName}
-            className="w-[56px] h-[56px] rounded-full"
+            className="w-12 h-12 rounded-full"
           />
           <p className="ml-[10px] text-[18px]">
             {userInfo?.displayName || userInfo?.email}

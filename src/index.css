@@ -23,3 +23,7 @@ html {
 ::-webkit-scrollbar {
   width: 10px;
 }
+.player {
+  width: 100% !important;
+  height: 100% !important;
+}
