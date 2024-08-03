@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { SlGlobe } from "react-icons/sl";
 import { PiSignIn } from "react-icons/pi";
@@ -9,22 +9,28 @@ import { useSelector, useDispatch } from "react-redux";
 import { signInWithPopup, signOut as firebaseSignOut } from "firebase/auth";
 import { toast } from "react-toastify";
 import { auth, googleProvider } from "../../firebase.config";
-import { setIsLoggedIn, setUser } from "../redux_Store/loggedInSlice";
+import {
+  setCountry,
+  setIsLoggedIn,
+  setLanguage,
+  setTheme,
+  setUser,
+} from "../redux_Store/loggedInSlice";
 import { userPng } from "../assets";
 import SettingSidebarOption from "./SettingSideBarOption";
 import { useNavigate } from "react-router-dom";
 import { countries, deviceTheme, languages } from "../utils/constant";
 
 function SettingSidebar({ settingCardRef }) {
-  const [appearance, setAppearance] = useState("Device theme");
-  const [language, setLanguage] = useState("English");
-  const [location, setLocation] = useState("India");
   const [isSettingSidebar, setIsSettingSidebar] = useState(true);
   const [settingOptionsId, setSettingOptionsId] = useState(1);
 
   const userInfo = useSelector((state) => state.loggedStatus.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const appearance = useSelector((state) => state.loggedStatus.theme);
+  const language = useSelector((state) => state.loggedStatus.language);
+  const location = useSelector((state) => state.loggedStatus.country);
 
   const loginWithGoogle = async () => {
     try {
@@ -49,7 +55,6 @@ function SettingSidebar({ settingCardRef }) {
       dispatch(setUser({}));
       await firebaseSignOut(auth);
       dispatch(setIsLoggedIn(false));
-
       toast.success("Successfully signed out!");
       navigate("/");
     } catch (error) {
@@ -84,10 +89,11 @@ function SettingSidebar({ settingCardRef }) {
     setIsSettingSidebar(false);
   }
 
+  useEffect(() => {}, []);
+
   return (
     <>
       <div
-        ref={settingCardRef}
         className={`w-fit absolute top-12 py-3 ${
           isSettingSidebar ? "block" : "hidden"
         } right-5 bg-white shadow shadow-slate-400 rounded-md`}
@@ -134,7 +140,7 @@ function SettingSidebar({ settingCardRef }) {
           arrData={deviceTheme}
           setIsSettingSidebar={setIsSettingSidebar}
           selectOption={appearance}
-          setSelectOption={setAppearance}
+          setSelectOption={(option) => dispatch(setTheme(option))}
         />
       )}
       {settingOptionsId === 4 && (
@@ -143,7 +149,7 @@ function SettingSidebar({ settingCardRef }) {
           arrData={languages}
           setIsSettingSidebar={setIsSettingSidebar}
           selectOption={language}
-          setSelectOption={setLanguage}
+          setSelectOption={(option) => dispatch(setLanguage(option))}
         />
       )}
       {settingOptionsId === 5 && (
@@ -152,7 +158,7 @@ function SettingSidebar({ settingCardRef }) {
           arrData={countries}
           setIsSettingSidebar={setIsSettingSidebar}
           selectOption={location}
-          setSelectOption={setLocation}
+          setSelectOption={(option) => dispatch(setCountry(option))}
         />
       )}
     </>

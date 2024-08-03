@@ -5,8 +5,8 @@ import { IoCheckmarkSharp } from "react-icons/io5";
 function SettingSidebarOption({
   heading,
   arrData,
-  language,
-  setLanguage,
+  selectOption,
+  setSelectOption,
   setIsSettingSidebar,
 }) {
   const [visible, setVisible] = useState(true);
@@ -39,9 +39,9 @@ function SettingSidebarOption({
           <div
             className={`flex items-center py-2 px-3 `}
             key={index}
-            onClick={() => setLanguage(item.name)}
+            onClick={() => setSelectOption(item.name)}
           >
-            {item.name === language ? (
+            {item.name === selectOption ? (
               <IoCheckmarkSharp />
             ) : (
               <div className="pl-[15px]"></div>
