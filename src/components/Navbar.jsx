@@ -51,7 +51,7 @@ const Navbar = () => {
         {isMobile ? (
           <FiSearch
             onClick={() => isMobile && setIsOpen(!isOpen)}
-            className="text-xl text-red-700"
+            className="text-xl text-slate-700"
           />
         ) : (
           <SearchBar

@@ -1,18 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { CategoryBar, Loader, Videos } from "../components";
+import { useSelector } from "react-redux";
 import { fetchData } from "../utils/FetchData";
+import { convertLanguage } from "../utils/convertLanguage";
+import { convertCountryIntoCode } from "../utils/convertCountry";
 const Feed = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [videoData, setVideoData] = useState(null);
   const [nextPageToken, setNextPageToken] = useState(null);
   const [loading, setLoading] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
+  const language = useSelector((state) => state.loggedStatus.language);
+  const location = useSelector((state) => state.loggedStatus.country);
+
   useEffect(() => {
     const fetchVideos = async () => {
       setLoading(true);
       try {
         const response = await fetchData(
-          `search/?q=${selectedCategory}&hl=en&gl=US`
+          `search/?q=${selectedCategory}&hl=${convertLanguage(
+            language
+          )}&gl=${convertCountryIntoCode(location)}`
         );
         setVideoData(response?.contents);
         setNextPageToken(response?.nextPageToken);
@@ -24,7 +32,7 @@ const Feed = () => {
     };
 
     fetchVideos();
-  }, [selectedCategory]);
+  }, [selectedCategory, language, location]);
 
   const fetchMoreVideos = async () => {
     if (loadingMore || !nextPageToken) return;

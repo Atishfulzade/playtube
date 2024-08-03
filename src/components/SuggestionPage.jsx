@@ -1,43 +1,87 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import SearchBar from "./SearchBar";
+import { FiSearch } from "react-icons/fi";
 import { MdOutlineClose } from "react-icons/md";
-
-const SuggestionPage = ({ input, isOpen, setIsOpen }) => {
+import { useNavigate } from "react-router-dom";
+import { convertLanguage } from "../utils/convertLanguage";
+import { convertCountryIntoCode } from "../utils/convertCountry";
+import { fetchData } from "../utils/FetchData";
+const SuggestionPage = ({ input, isOpen, setIsOpen, setInput }) => {
   const isMobile = useSelector((state) => state.windowSize.isMobile);
-  const Suggestion = [
-    { id: 1, title: "Comedy ka joker" },
-    { id: 2, title: "Comedy ka home" },
-    { id: 3, title: "Comedy ka as" },
-  ];
-  console.log("yes");
+  const language = useSelector((state) => state.loggedStatus.language);
+  const country = useSelector((state) => state.loggedStatus.country);
+  const navigate = useNavigate();
+  const [suggestions, setSuggestions] = useState([]);
+  useEffect(() => {
+    const fetchVideos = async () => {
+      try {
+        const response = await fetchData(
+          `auto-complete/?q=${input}&hl=${convertLanguage(
+            language
+          )}&gl=${convertCountryIntoCode(country)}`
+        );
+        setSuggestions(response?.results);
+      } catch (error) {
+        console.error("Error fetching video data:", error.message);
+      }
+    };
+
+    fetchVideos();
+  }, [input]);
+  console.log(suggestions);
+
   return (
     <div
-      className={`bg-red-600 right-0 absolute md:right-96 min-h[300px] p-3 h-[500px] overflow-y-auto md:w-[600px] w-full gap-1 items-start flex ${
+      className={` absolute  md:mt-12 top-0 h-fit p-3 justify-center bg-white w-full gap-1 items-start flex ${
         isMobile && "right-0"
-      } flex-col top-14  border rounded-lg z-50`}
+      } flex-col   border  rounded-lg z-50`}
     >
-      {isMobile && isOpen && <SearchBar />}
+      {isMobile && isOpen && (
+        <div className="w-full  flex justify-center ">
+          <div className="flex mx-auto mt-5 w-[90%] bg-white border rounded-full overflow-hidden  relative">
+            <input
+              type="text"
+              value={input}
+              placeholder="Search"
+              onChange={(e) => setInput(e.target.value)}
+              className="md:block w-[90%] text-base outline-none border  text-slate-800 indent-5 md:w-[500px] md:h-[40px] md:outline-none md:border md:border-slate-300 md:border-r-0 md:rounded-tl-full md:rounded-bl-full"
+            />
+            <button
+              type="submit"
+              className={`flex items-center justify-center text-slate-700  h-[40px] w-[40px] md:w-[48px] ${
+                isMobile ? "border-none text-xl" : "border border-slate-300"
+              } rounded-full md:rounded-l-none`}
+            >
+              <FiSearch />
+            </button>
+          </div>
+        </div>
+      )}
       <div className="p-3  gap-1 items-start flex flex-col  top-14  ">
         <div className="flex w-full cursor-pointer  justify-end">
           {isMobile ? (
             <MdOutlineClose
               onClick={() => setIsOpen(!isOpen)}
-              className="hover:bg-slate-100 p-1 text-2xl rounded-md "
+              className="absolute top-1 right-2 p-1 text-2xl rounded-md "
             />
           ) : (
             ""
           )}
         </div>
-        {Suggestion.map((suggestion) => (
-          <div
-            key={suggestion.id}
-            className="px-2 py-2 rounded-sm md:text-[20px] text-sm leading-3 font-semibold cursor-pointer w-full hover:bg-slate-100"
-          >
-            {suggestion.title}
-            {isOpen}
-          </div>
-        ))}
+        <div className="flex flex-col w-full overflow-y-auto h-[300px] md:h-[200px]">
+          {suggestions.map((keys) => (
+            <div
+              key={keys.id}
+              onClick={() => {
+                navigate(`/search/${keys}`);
+                setIsOpen(!isOpen);
+              }}
+              className="px-2  py-2 rounded-sm md:text-[18px] text-sm leading-3  cursor-pointer w-full hover:bg-slate-100"
+            >
+              {keys}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

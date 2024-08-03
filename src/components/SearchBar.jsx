@@ -6,8 +6,8 @@ useSelector;
 const SearchBar = ({ setInput, input, isOpen, setIsOpen }) => {
   const isMobile = useSelector((state) => state.windowSize.isMobile);
   return (
-    <div>
-      <div className="flex  relative">
+    <div className="relative w-full ">
+      <form className="flex  relative" onSubmit={(e) => e.preventDefault()}>
         <input
           type="text"
           value={input}
@@ -23,9 +23,14 @@ const SearchBar = ({ setInput, input, isOpen, setIsOpen }) => {
         >
           <FiSearch />
         </button>
-      </div>
-      {input?.length > 0 && !isMobile && (
-        <SuggestionPage isOpen={isOpen} setIsOpen={setIsOpen} />
+      </form>
+      {input.length > 0 && !isMobile && (
+        <SuggestionPage
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+          setInput={setInput}
+          input={input}
+        />
       )}
     </div>
   );
