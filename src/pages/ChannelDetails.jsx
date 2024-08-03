@@ -13,7 +13,7 @@ import { useParams } from "react-router-dom";
 import { fetchData } from "../utils/FetchData";
 import { formatViews } from "../utils/formatViews";
 import PlayListCard from "../components/PlayListCard";
-
+import { useSelector } from "react-redux";
 function ChannelDetails() {
   const { id } = useParams();
   const [tab, setTab] = useState(1);

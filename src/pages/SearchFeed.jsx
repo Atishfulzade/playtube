@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Videos } from "../components";
+import { Loader, Videos } from "../components";
 import { useParams } from "react-router-dom";
 import { fetchData } from "../utils/FetchData";
 import { useSelector } from "react-redux";
@@ -26,8 +26,9 @@ const SearchFeed = () => {
 
     fetchVideos();
   }, [searchTerm, language, location]);
-  console.log(SearchVideos);
-
+  if (!SearchVideos) {
+    return <Loader />;
+  }
   return (
     <div className="md:ps-5">
       <h4 className="md:my-2 m-2 font-semibold text-slate-700 whitespace-nowrap text-xl">

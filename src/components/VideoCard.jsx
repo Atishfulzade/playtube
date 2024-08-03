@@ -10,7 +10,7 @@ import {
 } from "../utils/constant";
 
 import { formatViews } from "../utils/formatViews";
-const VideoCard = ({ isHorizantal, item }) => {
+const VideoCard = ({ isHorizantal, item, setWatchLater }) => {
   const navigate = useNavigate();
   return (
     item.type == "video" && (
@@ -48,10 +48,13 @@ const VideoCard = ({ isHorizantal, item }) => {
                   {item?.video?.title}
                 </h3>
                 <BsThreeDotsVertical
+                  onClick={() => {
+                    setWatchLater((prev) => [...prev, item]);
+                  }}
                   className={
                     isHorizantal
-                      ? "text-xl absolute right-1 hover:bg-red-300  bg-white top-1"
-                      : "text-1xl"
+                      ? "text-xl absolute right-1 z-50 bg-white top-1"
+                      : "text-xl z-50  bg-white"
                   }
                 />
               </div>

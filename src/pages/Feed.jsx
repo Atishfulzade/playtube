@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { CategoryBar, Loader, Videos } from "../components";
 import { useSelector } from "react-redux";
 import { fetchData } from "../utils/FetchData";
+
 import { convertLanguage } from "../utils/convertLanguage";
 import { convertCountryIntoCode } from "../utils/convertCountry";
 const Feed = () => {
@@ -12,7 +13,7 @@ const Feed = () => {
   const [loadingMore, setLoadingMore] = useState(false);
   const language = useSelector((state) => state.loggedStatus.language);
   const location = useSelector((state) => state.loggedStatus.country);
-
+  const [watchLater, setWatchLater] = useState([]);
   useEffect(() => {
     const fetchVideos = async () => {
       setLoading(true);
@@ -33,6 +34,7 @@ const Feed = () => {
 
     fetchVideos();
   }, [selectedCategory, language, location]);
+  console.log(watchLater);
 
   const fetchMoreVideos = async () => {
     if (loadingMore || !nextPageToken) return;
@@ -72,14 +74,18 @@ const Feed = () => {
   }
   return (
     <div
-      className="flex flex-col w-full   justify-center   items-center
+      className="flex flex-col w-full justify-center items-center
     "
     >
       <CategoryBar
         selectedCategory={selectedCategory}
         setSelectedCategory={setSelectedCategory}
       />
-      <Videos isHorizantal={false} videoData={videoData} />
+      <Videos
+        isHorizantal={false}
+        videoData={videoData}
+        setWatchLater={setWatchLater}
+      />
       {loadingMore && <Loader />}
     </div>
   );

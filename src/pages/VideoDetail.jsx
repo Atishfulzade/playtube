@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Loader, Videos } from "../components";
 import { BsThreeDotsVertical, BsDownload } from "react-icons/bs";
+import { IoBookmarkOutline } from "react-icons/io5";
+
 import {
   AiOutlineLike,
   AiOutlineDislike,
@@ -13,9 +15,15 @@ import { fetchData } from "../utils/FetchData";
 import { formatViews } from "../utils/formatViews";
 import { formattedDate } from "../utils/formattedDate";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { convertLanguage } from "../utils/convertLanguage";
+import { convertCountryIntoCode } from "../utils/convertCountry";
 
 const VideoDetail = () => {
   const { id } = useParams();
+  const language = useSelector((state) => state.loggedStatus.language);
+  const location = useSelector((state) => state.loggedStatus.country);
+
   const [videoDetails, setVideoDetails] = useState(null);
   const [relatedVideo, setRelatedVideo] = useState(null);
   const [comments, setComments] = useState([]);
@@ -25,12 +33,20 @@ const VideoDetail = () => {
   useEffect(() => {
     const fetchVideos = async () => {
       try {
-        const videoPromise = fetchData(`video/details/?id=${id}&hl=en&gl=US`);
+        const videoPromise = fetchData(
+          `video/details/?id=${id}&hl=${convertLanguage(
+            language
+          )}&gl=${convertCountryIntoCode(location)}`
+        );
         const relatedPromise = fetchData(
-          `video/related-contents/?id=${id}&hl=en&gl=US`
+          `video/related-contents/?id=${id}&hl=${convertLanguage(
+            language
+          )}&gl=${convertCountryIntoCode(location)}`
         );
         const commentsPromise = fetchData(
-          `video/comments/?id=${id}&hl=en&gl=US`
+          `video/comments/?id=${id}&hl=${convertLanguage(
+            language
+          )}&gl=${convertCountryIntoCode(location)}`
         );
         const [videoResponse, relatedResponse, commentsResponse] =
           await Promise.all([videoPromise, relatedPromise, commentsPromise]);
@@ -48,10 +64,6 @@ const VideoDetail = () => {
   if (!videoDetails || !relatedVideo || !comments) {
     return <Loader />;
   }
-
-  console.log(videoDetails);
-  console.log(comments);
-  console.log(relatedVideo);
 
   return (
     <div className="flex flex-col md:flex-row w-full justify-start gap-10">
@@ -125,15 +137,15 @@ const VideoDetail = () => {
             <div className="w-[40px] h-[40px] border select-none border-[#b3b3b3] rounded-full flex items-center justify-center">
               <AiOutlineShareAlt className="text-[20px] active:scale-110" />
             </div>
-            <div className="w-[40px] h-[40px] border border-[#b3b3b3] rounded-full flex items-center justify-center">
-              <BsDownload className="text-[20px]" />
+            <div className="w-fit h-[40px] text-[17px] px-4 border border-[#b3b3b3] rounded-full flex items-center justify-center">
+              <IoBookmarkOutline /> save
             </div>
           </div>
         </div>
         {/* Video Description Section */}
         <div
           className={`bg-slate-200 rounded-md cursor-pointer p-5 relative transition-all ${
-            descriptionVisible ? "h-24 overflow-hidden " : "h-fit"
+            descriptionVisible ? "h-fit " : " h-24 overflow-hidden"
           } mt-3`}
         >
           <div className="flex gap-3 text-[16px]">
@@ -142,7 +154,7 @@ const VideoDetail = () => {
           </div>
           <p
             className={`text-[#535353] w-full flex ${
-              descriptionVisible ? "line-clamp-3" : "line-clamp-none"
+              descriptionVisible ? "line-clamp-none" : "line-clamp-3"
             } flex-col overflow-hidden text-ellipsis`}
           >
             {videoDetails?.description}
@@ -157,7 +169,7 @@ const VideoDetail = () => {
           {descriptionVisible ? (
             <span
               onClick={() => setDescriptionVisible(!descriptionVisible)}
-              className="absolute bottom-3 right-3 px-3 bg-slate-200 font-semibold text-sm"
+              className="absolute bottom-2 right-3 px-2 bg-slate-200 font-semibold text-sm"
             >
               More
             </span>
