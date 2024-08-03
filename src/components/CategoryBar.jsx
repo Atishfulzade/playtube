@@ -20,13 +20,13 @@ const CategoryBar = ({ selectedCategory, setSelectedCategory }) => {
           <div
             key={index}
             className={`px-4 md:py-2 py-1 cursor-pointer h-fit whitespace-nowrap text-sm ${
-              selectedCategory === category
+              selectedCategory === category.name
                 ? "bg-slate-900 text-white"
                 : "bg-slate-200 text-slate-900"
             } rounded-[5px] font-semibold`}
-            onClick={() => setSelectedCategory(category)}
+            onClick={() => setSelectedCategory(category.query)}
           >
-            {category}
+            {category.name}
           </div>
         ))}
       </div>

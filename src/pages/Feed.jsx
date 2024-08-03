@@ -18,7 +18,6 @@ const Feed = () => {
 
     fetchVideos();
   }, [selectedCategory]);
-  console.log(videoData);
   if (!videoData) {
     return <Loader />;
   }

@@ -27,3 +27,7 @@ html {
   width: 100% !important;
   height: 100% !important;
 }
+.text-ellipsis {
+  white-space: pre-wrap; /* Allows wrapping of the text */
+  overflow-wrap: break-word; /* Break long words if needed */
+}

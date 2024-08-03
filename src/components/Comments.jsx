@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
 
-const Comments = () => {
+const Comments = ({ comm }) => {
   const [reply, setReplay] = useState(false);
+  const navigate = useNavigate();
   function currentReplay() {
     setReplay(!reply);
   }
@@ -13,15 +15,19 @@ const Comments = () => {
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           <img
-            src="https://png.pngtree.com/png-vector/20191101/ourmid/pngtree-cartoon-color-simple-male-avatar-png-image_1934459.jpg"
+            src={comm?.author?.avatar[0]?.url}
             alt="user avatar"
-            className="w-[48px] h-[48px] rounded-full"
+            className="w-[48px] cursor-pointer h-[48px] rounded-full"
+            onClick={() => {
+              navigate(`/channel/${comm?.author?.channelId}`);
+            }}
           />
           <div>
             <p>
-              @skyideas4294 <span className="ml-1">3 hourse ago </span>
+              {comm?.author?.title}
+              <span className="ml-3">{comm?.publishedTimeText} </span>
             </p>
-            <p>what a performance both the bowler and the commentators</p>
+            <p>{comm.content}</p>
           </div>
         </div>
         <div>
@@ -33,11 +39,13 @@ const Comments = () => {
         <div className="flex items-center gap-2 ">
           <div className="flex gap-[2px] text-[18px] h-[40px] items-center ">
             <AiOutlineLike className="" />
-            <span className="text-[14px]">14</span>
+            <span className="text-[14px]">{comm?.stats?.votes}</span>
           </div>
-          <AiOutlineDislike className="text-[18px]" />
-          <div className="text-[14px] cursor-pointer" onClick={currentReplay}>
-            Reply
+          <div
+            className="text-[14px] ml-5 cursor-pointer"
+            onClick={currentReplay}
+          >
+            {comm?.stats?.replies} replies
           </div>
         </div>
         {reply && (
