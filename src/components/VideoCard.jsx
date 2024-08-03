@@ -15,7 +15,7 @@ const VideoCard = ({ isHorizantal, item }) => {
   return (
     item.type == "video" && (
       <div
-        onClick={() => navigate(`video/${item?.video?.videoId}`)}
+        onClick={() => navigate(`/video/${item?.video?.videoId}`)}
         className={` select-none mx-auto relative ${
           isHorizantal
             ? "flex md:h-[170px]  w-[95%] md:w-[700px]"

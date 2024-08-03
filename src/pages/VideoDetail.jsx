@@ -12,6 +12,7 @@ import Comments from "../components/Comments";
 import { fetchData } from "../utils/FetchData";
 import { formatViews } from "../utils/formatViews";
 import { formattedDate } from "../utils/formattedDate";
+import { useNavigate } from "react-router-dom";
 
 const VideoDetail = () => {
   const { id } = useParams();
@@ -20,7 +21,7 @@ const VideoDetail = () => {
   const [comments, setComments] = useState([]);
   const [likes, setLikes] = useState(false);
   const [descriptionVisible, setDescriptionVisible] = useState(false);
-
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchVideos = async () => {
       try {
@@ -73,14 +74,26 @@ const VideoDetail = () => {
         </div>
         <div className="flex flex-col md:flex-row items-center justify-between">
           <div className="flex items-center gap-10">
-            <div className="flex items-center gap-2">
+            <div
+              className="flex items-center gap-2 cursor-pointer"
+              onClick={() => {
+                navigate(`/channel/${videoDetails?.author?.channelId}`);
+              }}
+            >
               <img
                 src={videoDetails?.author?.avatar[1].url}
                 alt="user avatar"
                 className="w-12 h-12 rounded-full"
               />
               <div>
-                <p>{videoDetails?.author?.title}</p>
+                <p
+                  className="cursor-pointer"
+                  onClick={() => {
+                    navigate(`/channel/${videoDetails?.author?.channelId}`);
+                  }}
+                >
+                  {videoDetails?.author?.title}
+                </p>
                 <p>
                   {formatViews(videoDetails?.author?.stats?.subscribers)}
                   &nbsp;subscribers
