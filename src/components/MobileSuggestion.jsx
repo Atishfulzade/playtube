@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { convertLanguage } from "../utils/convertLanguage";
 import { convertCountryIntoCode } from "../utils/convertCountry";
 import { fetchData } from "../utils/FetchData";
-const SuggestionPage = ({ input, isOpen, setIsOpen, setInput }) => {
+const MobileSuggestion = ({ input, isOpen, setIsOpen, setInput }) => {
   const isMobile = useSelector((state) => state.windowSize.isMobile);
   const language = useSelector((state) => state.loggedStatus.language);
   const country = useSelector((state) => state.loggedStatus.country);
@@ -38,13 +38,16 @@ const SuggestionPage = ({ input, isOpen, setIsOpen, setInput }) => {
     >
       {isMobile && isOpen && (
         <div className="w-full  flex justify-center ">
-          <div className="flex mx-auto mt-5 w-[90%] bg-white border rounded-full overflow-hidden  relative">
+          <form
+            onSubmit={(e) => e.preventDefault()}
+            className="flex mx-auto mt-5 w-[90%] bg-white border rounded-full overflow-hidden  relative"
+          >
             <input
               type="text"
               value={input}
               placeholder="Search"
               onChange={(e) => setInput(e.target.value)}
-              className="md:block w-[90%] text-base outline-none border  text-slate-800 indent-5 md:w-[500px] md:h-[40px] md:outline-none md:border md:border-slate-300 md:border-r-0 md:rounded-tl-full md:rounded-bl-full"
+              className="md:block w-[90%] text-base outline-none   text-slate-800 indent-5 md:w-[500px] md:h-[40px] md:outline-none md:border md:border-slate-300 md:border-r-0 md:rounded-tl-full md:rounded-bl-full"
             />
             <button
               type="submit"
@@ -54,7 +57,7 @@ const SuggestionPage = ({ input, isOpen, setIsOpen, setInput }) => {
             >
               <FiSearch />
             </button>
-          </div>
+          </form>
         </div>
       )}
       <div className="p-3  gap-1 items-start flex flex-col  top-14  ">
@@ -68,13 +71,14 @@ const SuggestionPage = ({ input, isOpen, setIsOpen, setInput }) => {
             ""
           )}
         </div>
-        <div className="flex flex-col w-full overflow-y-auto h-[300px] md:h-[200px]">
+        <div className="flex flex-col w-full  overflow-y-auto h-fit md:h-[200px]">
           {suggestions.map((keys) => (
             <div
               key={keys.id}
               onClick={() => {
                 navigate(`/search/${keys}`);
                 setInput("");
+                setIsOpen(!isOpen);
               }}
               className="px-2  py-2 rounded-sm md:text-[18px] text-sm leading-3  cursor-pointer w-full hover:bg-slate-100"
             >
@@ -87,4 +91,4 @@ const SuggestionPage = ({ input, isOpen, setIsOpen, setInput }) => {
   );
 };
 
-export default SuggestionPage;
+export default MobileSuggestion;

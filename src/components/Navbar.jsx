@@ -10,6 +10,7 @@ import { FiSearch } from "react-icons/fi";
 import SuggestionPage from "./SuggestionPage";
 import AuthenticationPage from "./AuthenticationPage";
 import { useNavigate } from "react-router-dom";
+import MobileSuggestion from "./MobileSuggestion";
 const Navbar = () => {
   const settingCardRef = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
@@ -63,7 +64,12 @@ const Navbar = () => {
           />
         )}
         {isMobile && isOpen && (
-          <SuggestionPage isOpen={isOpen} setIsOpen={setIsOpen} />
+          <MobileSuggestion
+            isOpen={isOpen}
+            setIsOpen={setIsOpen}
+            input={input}
+            setInput={setInput}
+          />
         )}
 
         {/* Microphone icon, visible only on medium screens and larger */}
