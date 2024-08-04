@@ -71,51 +71,7 @@ npm run dev
 
 ## Project structure
 
-App
-│
-└─── src
-│
-└─── pages
-│ ├── Feed.jsx
-│ │ ├── CategoryBar.jsx
-│ │ └── Videos.jsx
-│ ├── ChannelDetails.jsx
-│ │ ├── Videos.jsx
-│ │ └── PlayListCard.jsx
-│ ├── ErrorPage.jsx
-│ ├── History.jsx
-│ ├── LikedVideo.jsx
-│ ├── Post.jsx
-│ ├── SearchFeed.jsx
-│ │ └── Videos.jsx
-│ ├── VideoDetail.jsx
-│ │ ├── Comments.jsx
-│ │ └── Videos.jsx
-│ ├── WatchLater.jsx
-│
-└─── components
-├── CategoryBar.jsx
-├── Videos.jsx
-│ └── VideoCard.jsx
-├── PlayListCard.jsx
-├── Comments.jsx
-├── SuggestionPage.jsx
-│ └── Searchbar.jsx
-├── Layout.jsx
-│ ├── Navbar.jsx
-│ ├── LeftSidebar.jsx
-│ └── Outlet
-├── Navbar.jsx
-│ ├── Searchbar.jsx
-│ ├── SuggestionPage.jsx
-│ └── SettingSidebar.jsx
-├── SearchBar.jsx
-│ └── SuggestionPage.jsx
-├── SettingSidebar.jsx
-│ └── SettingSidebarOption.jsx
-├── ChannelCard.jsx
-├── Loader.jsx
-└── AuthenticationPage.jsx
+App │ └─── src │ └─── pages │ ├── Feed.jsx │ │ ├── CategoryBar.jsx │ │ └── Videos.jsx │ ├── ChannelDetails.jsx │ │ ├── Videos.jsx │ │ └── PlayListCard.jsx │ ├── ErrorPage.jsx │ ├── History.jsx │ ├── LikedVideo.jsx │ ├── Post.jsx │ ├── SearchFeed.jsx │ │ └── Videos.jsx │ ├── VideoDetail.jsx │ │ ├── Comments.jsx │ │ └── Videos.jsx │ ├── WatchLater.jsx │ └─── components ├── CategoryBar.jsx ├── Videos.jsx │ └── VideoCard.jsx ├── PlayListCard.jsx ├── Comments.jsx ├── SuggestionPage.jsx │ └── Searchbar.jsx ├── Layout.jsx │ ├── Navbar.jsx │ ├── LeftSidebar.jsx │ └── Outlet ├── Navbar.jsx │ ├── Searchbar.jsx │ ├── SuggestionPage.jsx │ └── SettingSidebar.jsx ├── SearchBar.jsx │ └── SuggestionPage.jsx ├── SettingSidebar.jsx │ └── SettingSidebarOption.jsx ├── ChannelCard.jsx ├── Loader.jsx └── AuthenticationPage.jsx
 
 ## Entity Relation Diagram (ER Diagram)
 
