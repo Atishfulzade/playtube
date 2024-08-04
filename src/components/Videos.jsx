@@ -1,11 +1,12 @@
 import React from "react";
 import VideoCard from "./VideoCard";
-const Videos = ({ isHorizantal, videoData, setWatchLater }) => {
+
+const Videos = ({ isHorizantal, videoData, setWatchLater, flex }) => {
   return (
     <div
-      className={`flex flex-wrap  ${
-        isHorizantal ? "flex-col" : "flex-row"
-      } gap-4 justify-center md:justify-start`}
+      className={`flex  ${
+        isHorizantal ? `flex-col ${flex} items-start` : `flex-wrap ${flex}`
+      } h-full w-full gap-4`}
     >
       {videoData?.map((item, i) => (
         <VideoCard

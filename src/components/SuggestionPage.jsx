@@ -69,9 +69,9 @@ const SuggestionPage = ({ input, isOpen, setIsOpen, setInput }) => {
           )}
         </div>
         <div className="flex flex-col w-full overflow-y-auto h-[300px] md:h-[200px]">
-          {suggestions.map((keys) => (
+          {suggestions.map((keys, i) => (
             <div
-              key={keys.id}
+              key={i}
               onClick={() => {
                 navigate(`/search/${keys}`);
                 setInput("");

@@ -30,13 +30,19 @@ const SearchFeed = () => {
     return <Loader />;
   }
   return (
-    <div className="md:ps-5">
-      <h4 className="md:my-2 m-2 font-semibold text-slate-700 whitespace-nowrap text-xl">
-        Search result for:{" "}
-        <span className="text-red-600 mb-3">{searchTerm}</span>
+    <div className="md:ps-5 flex flex-col justify-start items-start ">
+      <h4 className="md:my-2 m-2 font-semibold text-slate-700 whitespace-nowrap text-sm md:text-xl">
+        Search result for:&nbsp;
+        <span className="text-red-600 mb-3 text-sm md:text-xl">
+          {searchTerm}
+        </span>
       </h4>
 
-      <Videos isHorizantal={true} videoData={SearchVideos} />
+      <Videos
+        isHorizantal={true}
+        videoData={SearchVideos}
+        flex="items-start justify-start"
+      />
     </div>
   );
 };

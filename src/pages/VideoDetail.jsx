@@ -155,7 +155,7 @@ const VideoDetail = ({ setLeftSideBarOpen }) => {
           </div>
           <p
             className={`text-[#535353] w-full flex ${
-              descriptionVisible ? "line-clamp-none" : "line-clamp-3"
+              descriptionVisible ? "line-clamp-none" : "line-clamp-4"
             } flex-col overflow-hidden text-ellipsis`}
           >
             {videoDetails?.description}
@@ -172,14 +172,14 @@ const VideoDetail = ({ setLeftSideBarOpen }) => {
               onClick={() => setDescriptionVisible(!descriptionVisible)}
               className="absolute bottom-2 right-3 px-2 bg-slate-200 font-semibold text-sm"
             >
-              More
+              show less
             </span>
           ) : (
             <span
               onClick={() => setDescriptionVisible(!descriptionVisible)}
               className="absolute bottom-3 right-3 px-3 bg-slate-200 font-semibold text-sm"
             >
-              Show Less
+              more{" "}
             </span>
           )}
         </div>
@@ -199,7 +199,10 @@ const VideoDetail = ({ setLeftSideBarOpen }) => {
       <div className="w-full md:w-1/4">
         <p className="text-[24px]">Suggested videos</p>
         <div className="mt-3">
-          <Videos isHorizontal={true} videoData={relatedVideo?.contents} />
+          <Videos
+            isHorizantal={setLeftSideBarOpen ? true : false}
+            videoData={relatedVideo?.contents}
+          />
         </div>
       </div>
     </div>
