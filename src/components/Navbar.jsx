@@ -90,7 +90,7 @@ const Navbar = ({ setLeftSideBarOpen }) => {
             className="w-[40px] h-[40px] border border-[#b3b3b3] overflow-hidden rounded-full flex items-center justify-center"
           >
             <img
-              src={userInfo.photoURL || userPng}
+              src={userInfo.photoUrl || userPng}
               alt="ProfilePhoto"
               className="h-full w-full object-cover cursor-pointer"
             />

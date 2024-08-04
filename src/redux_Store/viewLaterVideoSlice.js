@@ -13,7 +13,7 @@ export const viewLaterVideoSlice = createSlice({
     },
     removeVideo: (state, action) => {
       state.playList = state.playList.filter(
-        (track) => track.id !== action.payload.id
+        (track) => track.video.videoId !== action.payload
       );
     },
   },

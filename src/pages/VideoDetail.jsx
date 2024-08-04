@@ -8,6 +8,7 @@ import {
   AiOutlineDislike,
   AiOutlineShareAlt,
 } from "react-icons/ai";
+import { likeVideo, removeLikedVideo } from "../redux_Store/likedVideoSlice";
 import ReactPlayer from "react-player/youtube";
 import { useParams } from "react-router-dom";
 import Comments from "../components/Comments";
@@ -18,12 +19,12 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { convertLanguage } from "../utils/convertLanguage";
 import { convertCountryIntoCode } from "../utils/convertCountry";
-
+import { useDispatch } from "react-redux";
 const VideoDetail = ({ setLeftSideBarOpen }) => {
   const { id } = useParams();
   const language = useSelector((state) => state.loggedStatus.language);
   const location = useSelector((state) => state.loggedStatus.country);
-
+  const dispatch = useDispatch();
   const [videoDetails, setVideoDetails] = useState(null);
   const [relatedVideo, setRelatedVideo] = useState(null);
   const [comments, setComments] = useState([]);
@@ -61,6 +62,22 @@ const VideoDetail = ({ setLeftSideBarOpen }) => {
 
     fetchVideos();
   }, [id]);
+  const handleLike = (e) => {
+    e.stopPropagation();
+    dispatch(likeVideo(item));
+    setLikes(true);
+  };
+
+  const handleDislike = (e) => {
+    e.stopPropagation();
+    dispatch(removeLikedVideo(videoId));
+    setLikes(false);
+  };
+
+  const toggleOptions = (e) => {
+    e.stopPropagation();
+    setToggleBtn(!toggleBtn);
+  };
 
   if (!videoDetails || !relatedVideo || !comments) {
     return <Loader />;
@@ -125,6 +142,7 @@ const VideoDetail = ({ setLeftSideBarOpen }) => {
               >
                 <AiOutlineLike
                   className="cursor-pointer active:scale-125 transition-all"
+                  onClick={likes ? handleDislike : handleLike}
                   fill={likes ? "red" : ""}
                 />
                 <span className="text-[16px] cursor-pointer select-none">
@@ -202,6 +220,7 @@ const VideoDetail = ({ setLeftSideBarOpen }) => {
           <Videos
             isHorizantal={setLeftSideBarOpen ? true : false}
             videoData={relatedVideo?.contents}
+            add={true}
           />
         </div>
       </div>
