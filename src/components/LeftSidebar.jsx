@@ -19,13 +19,13 @@ const LeftSidebar = () => {
   const [isIconActive, setIsIconActive] = useState("Home");
 
   return isMobile ? (
-    <div className="fixed left-0 z-50 bottom-0 bg-slate-100 py-1 flex items-center justify-around w-[100%]">
+    <div className="fixed left-0 dark:bg-slate-700 dark:text-white z-50 bottom-0 bg-slate-100 py-1 flex items-center justify-around w-[100%]">
       {sidebarMobileMenu.map((item, index) => (
         <div
           key={index}
-          className={`w-[40px] h-[40px] flex items-center text-center justify-center ${
+          className={`w-[40px] h-[40px] flex dark:bg-slate-700 dark:text-white items-center text-center justify-center ${
             isIconActive === item.name
-              ? "bg-slate-800 text-white rounded-full"
+              ? "bg-slate-800 dark:bg-slate-900 dark:text-white text-white rounded-full"
               : "bg-slate-100"
           } ${
             !isLoggedIn && !item.access
@@ -49,12 +49,12 @@ const LeftSidebar = () => {
     </div>
   ) : (
     // Desktop view sidebar
-    <div className="px-6 leftbar w-[20%] h-[89vh] overflow-y-scroll pb-7 z-50 sticky left-0 top-16">
+    <div className="px-6 leftbar dark:bg-slate-800 dark:text-white  w-[20%] md:h-[90vh] overflow-y-scroll  z-50 sticky left-0 top-16">
       <div className="leftbar flex flex-col gap-3">
         {leftSidebarMenu1.map((item, index) => (
           <div
             key={index}
-            className={`flex cursor-pointer py-2 px-3 rounded-[10px] ${
+            className={`flex cursor-pointer dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-white py-2 px-3 rounded-[10px] ${
               isActive === item.title ? "bg-slate-200" : "bg-white"
             }`}
             onClick={() => {
@@ -71,7 +71,7 @@ const LeftSidebar = () => {
           leftSidebarMenu2.map((item, index) => (
             <div
               key={index}
-              className={`flex cursor-pointer py-2 px-3 rounded-[10px] ${
+              className={`flex cursor-pointer py-2 dark:bg-slate-800 dark:hover:bg-slate-700 px-3 rounded-[10px] ${
                 isActive === item.title ? "bg-slate-200" : "bg-white"
               }`}
               onClick={() => {
@@ -85,7 +85,7 @@ const LeftSidebar = () => {
           ))
         ) : (
           <div className="flex  flex-col gap-5 justify-center">
-            <p className="flex-wrap text-sm md:text-[15px] text-start ">
+            <p className="flex-wrap text-sm md:text-[15px] text-start dark:bg-slate-800  ">
               Sign in to like videos,
               <br /> history, and save <br />
               for later view.
@@ -103,7 +103,7 @@ const LeftSidebar = () => {
         {exploreMenu.map((item, index) => (
           <div
             key={index}
-            className={`flex cursor-pointer py-2 px-3 rounded-[10px] ${
+            className={`flex cursor-pointer py-2 dark:bg-slate-800 dark:hover:bg-slate-700 px-3 rounded-[10px] ${
               isActive === item.title ? "bg-slate-200" : "bg-white"
             }`}
             onClick={() => {

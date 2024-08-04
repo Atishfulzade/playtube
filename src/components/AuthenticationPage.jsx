@@ -71,7 +71,7 @@ const AuthenticationPage = () => {
   };
 
   return (
-    <div className="flex items-center backdrop-blur justify-center h-full">
+    <div className="flex dark:bg-slate-800 dark:text-white items-center backdrop-blur justify-center h-full">
       <form
         className="w-full max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
         onSubmit={submitDetails}
@@ -92,7 +92,7 @@ const AuthenticationPage = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             id="email"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
+            className="bg-gray-50 border  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
             placeholder="you@example.com"
             required
           />

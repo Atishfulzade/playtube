@@ -11,12 +11,25 @@ function SettingSidebarOption({
 }) {
   const [visible, setVisible] = useState(true);
 
+  const handleOptionClick = (option) => {
+    setSelectOption(option);
+    setVisible(false);
+    setIsSettingSidebar(true);
+
+    if (heading === "Appearance") {
+      if (option === "Dark theme") {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+    }
+  };
+
   return (
     <div
-      className={` top-14  md:right-14 w-64 absolute ${
+      className={`top-14 md:right-14 w-64 absolute ${
         visible ? "block" : "hidden"
-      }  
-       right-5 bg-white shadow shadow-slate-400 rounded-md`}
+      } right-5 bg-white dark:bg-gray-800 dark:text-white shadow shadow-slate-400 rounded-md`}
     >
       <div className="flex items-center px-3 py-2 border-b-[1px]">
         <IoMdArrowBack
@@ -30,16 +43,18 @@ function SettingSidebarOption({
         <p className="ml-[10px] text-[18px]">{heading}</p>
       </div>
       {heading === "Appearance" && (
-        <div className="px-3 py-2 text-slate-600  text-[14px]">
+        <div className="px-3 py-2 text-slate-600 dark:text-slate-400 text-[14px]">
           Setting applies to this browser only
         </div>
       )}
       <div className="cursor-pointer h-[300px] md:h-fit md:max-h-[600px] overflow-y-auto">
         {arrData.map((item, index) => (
           <div
-            className={`flex items-center py-2 px-3 `}
+            className={`flex items-center py-2 px-3 ${
+              item === selectOption ? "bg-slate-200 dark:bg-slate-700" : ""
+            }`}
             key={index}
-            onClick={() => setSelectOption(item.name)}
+            onClick={() => handleOptionClick(item.name)}
           >
             {item.name === selectOption ? (
               <IoCheckmarkSharp />

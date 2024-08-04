@@ -7,7 +7,7 @@ const Comments = ({ comm }) => {
   const navigate = useNavigate();
 
   return (
-    <div className="my-5">
+    <div className="my-5 dark:bg-slate-800 dark:text-white">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           <img

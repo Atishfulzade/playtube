@@ -21,7 +21,7 @@ import SettingSidebarOption from "./SettingSideBarOption";
 import { useNavigate } from "react-router-dom";
 import { countries, deviceTheme, languages } from "../utils/constant";
 
-function SettingSidebar({ settingCardRef }) {
+function SettingSidebar() {
   const [isSettingSidebar, setIsSettingSidebar] = useState(true);
   const [settingOptionsId, setSettingOptionsId] = useState(1);
 
@@ -31,6 +31,15 @@ function SettingSidebar({ settingCardRef }) {
   const appearance = useSelector((state) => state.loggedStatus.theme);
   const language = useSelector((state) => state.loggedStatus.language);
   const location = useSelector((state) => state.loggedStatus.country);
+
+  const applyTheme = (theme) => {
+    const htmlElement = document.documentElement;
+    if (theme === "Dark theme") {
+      htmlElement.classList.add("dark");
+    } else {
+      htmlElement.classList.remove("dark");
+    }
+  };
 
   const loginWithGoogle = async () => {
     try {
@@ -89,14 +98,16 @@ function SettingSidebar({ settingCardRef }) {
     setIsSettingSidebar(false);
   }
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    applyTheme(appearance);
+  }, [appearance]);
 
   return (
     <>
       <div
         className={`w-fit absolute top-12 py-3 ${
           isSettingSidebar ? "block" : "hidden"
-        } right-5 bg-white shadow shadow-slate-400 rounded-md`}
+        } right-5 bg-white dark:bg-gray-800 dark:text-white shadow shadow-slate-400 rounded-md`}
       >
         <div className="flex cursor-default items-center px-3 py-2 border-b-[1px]">
           <img
@@ -111,7 +122,7 @@ function SettingSidebar({ settingCardRef }) {
         <div className="">
           {settingSidebarData.map((item) => (
             <div
-              className={`flex items-center cursor-pointer hover:bg-slate-200 py-2 px-3 ${
+              className={`flex items-center cursor-pointer hover:bg-slate-200 dark:hover:bg-slate-700 py-2 px-3 ${
                 item.id === 2 ? "border-b-[1px]" : ""
               }`}
               key={item.id}
@@ -125,9 +136,9 @@ function SettingSidebar({ settingCardRef }) {
               {item.icon}
               <p className="ml-[20px] cursor-pointer">{item.name}</p>
               <p className="ml-auto cursor-pointer">
-                {item.id === 3 && <LiaAngleRightSolid />}
-                {item.id === 4 && <LiaAngleRightSolid />}
-                {item.id === 5 && <LiaAngleRightSolid />}
+                {(item.id === 3 || item.id === 4 || item.id === 5) && (
+                  <LiaAngleRightSolid />
+                )}
               </p>
             </div>
           ))}

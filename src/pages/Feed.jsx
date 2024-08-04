@@ -78,7 +78,7 @@ const Feed = ({ setLeftSideBarOpen }) => {
   }
 
   return (
-    <div className="flex flex-col w-full justify-center items-center">
+    <div className="flex flex-col dark:bg-slate-800 dark:text-white w-full justify-center items-center">
       <CategoryBar
         selectedCategory={selectedCategory}
         setSelectedCategory={setSelectedCategory}

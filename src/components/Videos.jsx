@@ -4,7 +4,7 @@ import VideoCard from "./VideoCard";
 const Videos = ({ isHorizantal, videoData, setWatchLater, flex, add }) => {
   return (
     <div
-      className={`flex  ${
+      className={`flex dark:bg-slate-800 dark:text-white ${
         isHorizantal
           ? `flex-col ${flex} items-start`
           : `flex-wrap ${flex} justify-center`

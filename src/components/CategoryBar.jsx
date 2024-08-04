@@ -11,10 +11,10 @@ const CategoryBar = ({ selectedCategory, setSelectedCategory }) => {
   };
 
   return (
-    <div className="md:w-full z-10 w-[95%] mx-auto  sticky top-[63px] md:top-[64px]   bg-white  flex h-12 select-none justify-between items-center py-5">
+    <div className="md:w-full dark:bg-slate-800 dark:text-white z-10 w-[95%] mx-auto  sticky top-[63px] md:top-[64px]   bg-white  flex h-12 select-none justify-between items-center py-5">
       <div
         ref={scrollRef}
-        className=" flex w-[100%] gap-3 categorybar item-center overflow-x-auto"
+        className=" flex w-[100%] gap-3 categorybar dark:bg-slate-800 dark:text-white item-center overflow-x-auto"
       >
         {categories.map((category, index) => (
           <div
@@ -22,9 +22,9 @@ const CategoryBar = ({ selectedCategory, setSelectedCategory }) => {
             className={`px-4 md:py-2 py-1 cursor-pointer h-fit whitespace-nowrap text-sm ${
               selectedCategory === category.name
                 ? "bg-slate-900 text-white"
-                : "bg-slate-200 text-slate-900"
+                : "bg-slate-200 dark:bg-slate-700 dark:text-white text-slate-900"
             } rounded-[5px] font-semibold`}
-            onClick={() => setSelectedCategory(category.query)}
+            onClick={() => setSelectedCategory(category.name)}
           >
             {category.name}
           </div>

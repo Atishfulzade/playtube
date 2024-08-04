@@ -19,8 +19,8 @@ const Layout = ({ leftSideBarOpen, setLeftSideBarOpen }) => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         dispatch(setIsLoggedIn(true));
-        const { uid, email, displayName } = user;
-        dispatch(setUser({ uid, email, displayName }));
+        const { uid, email, displayName, photoURL } = user;
+        dispatch(setUser({ uid, email, displayName, photoURL }));
       } else {
         dispatch(setIsLoggedIn(false));
         dispatch(setUser(null));
@@ -31,12 +31,12 @@ const Layout = ({ leftSideBarOpen, setLeftSideBarOpen }) => {
   }, [navigate, dispatch]);
 
   return (
-    <div className="flex flex-col transition-all">
+    <div className="flex flex-col dark:bg-slate-800 dark:text-white transition-all">
       <Navbar setLeftSideBarOpen={setLeftSideBarOpen} />
       <div className="flex w-full">
         {absolutePath !== "video" && leftSideBarOpen && <LeftSidebar />}
 
-        <div className="w-full md:w-[80%]">
+        <div className="w-full dark:bg-slate-800 dark:text-white md:w-[80%]">
           <Outlet />
         </div>
       </div>

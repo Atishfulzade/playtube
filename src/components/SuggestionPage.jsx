@@ -32,7 +32,7 @@ const SuggestionPage = ({ input, isOpen, setIsOpen, setInput }) => {
 
   return (
     <div
-      className={` absolute  md:mt-12 top-0 h-fit p-3 justify-center bg-white w-full gap-1 items-start flex ${
+      className={` absolute  md:mt-12 dark:bg-slate-800 dark:text-white top-0 h-fit p-3 justify-center bg-white w-full gap-1 items-start flex ${
         isMobile && "right-0"
       } flex-col   border  rounded-lg z-50`}
     >
@@ -69,7 +69,7 @@ const SuggestionPage = ({ input, isOpen, setIsOpen, setInput }) => {
           )}
         </div>
         <div className="flex flex-col w-full overflow-y-auto h-[300px] md:h-[200px]">
-          {suggestions.map((keys, i) => (
+          {suggestions?.map((keys, i) => (
             <div
               key={i}
               onClick={() => {

@@ -6,18 +6,18 @@ useSelector;
 const SearchBar = ({ setInput, input, isOpen, setIsOpen }) => {
   const isMobile = useSelector((state) => state.windowSize.isMobile);
   return (
-    <div className="relative w-full ">
+    <div className="relative w-full dark:bg-slate-800 dark:text-white ">
       <form className="flex  relative" onSubmit={(e) => e.preventDefault()}>
         <input
           type="text"
           value={input}
           placeholder="Search"
           onChange={(e) => setInput(e.target.value)}
-          className=" hidden md:block text-base text-slate-800 indent-5 md:w-[500px] md:h-[40px] md:outline-none md:border md:border-slate-300 md:border-r-0 md:rounded-tl-full md:rounded-bl-full"
+          className=" hidden md:block text-base dark:bg-slate-800 dark:text-white text-slate-800 indent-5 md:w-[500px] md:h-[40px] md:outline-none md:border md:border-slate-300 md:border-r-0 md:rounded-tl-full md:rounded-bl-full"
         />
         <button
           type="submit"
-          className={`flex items-center justify-center text-slate-700  h-[40px] w-[40px] md:w-[48px] ${
+          className={`flex items-center justify-center dark:text-white text-slate-700  h-[40px] w-[40px] md:w-[48px] ${
             isMobile ? "border-none text-xl" : "border border-slate-300"
           } rounded-full md:rounded-l-none`}
         >

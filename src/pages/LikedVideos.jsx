@@ -7,7 +7,7 @@ const LikedVideos = ({ setLeftSideBarOpen }) => {
   setLeftSideBarOpen(true);
 
   return (
-    <div className="flex pb-10 p-5 flex-col h-full w-full">
+    <div className="flex pb-10 p-5  flex-col h-full w-full">
       <h3 className="mb-3  md:text-xl">Liked videos</h3>
       {!data ? (
         "No like video available"

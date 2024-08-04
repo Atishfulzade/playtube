@@ -38,13 +38,13 @@ const Navbar = ({ setLeftSideBarOpen }) => {
   const isMobile = useSelector((state) => state.windowSize.isMobile);
   const isLoggedIn = useSelector((state) => state.loggedStatus.isLoggedIn);
   return (
-    <div className="w-full  transition-all sticky top-0 bg-white z-20 px-1  md:px-6 flex items-center justify-between h-16">
+    <div className="w-full dark:bg-slate-800 dark:text-white transition-all sticky top-0 bg-white z-20 px-1  md:px-6 flex items-center justify-between h-16">
       {/* Left side of the navbar */}
-      <div className="flex select-none items-center ">
+      <div className="flex select-none  items-center ">
         {/* Hamburger menu icon, visible only on medium screens and larger */}
         <HiOutlineMenu
           onClick={() => setLeftSideBarOpen((prev) => !prev)}
-          className="hidden hover:bg-slate-200 p-2 md:text-[38px] rounded-full cursor-pointer md:mr-1 lg:mr-3 md:block text-slate-800"
+          className="hidden hover:bg-slate-200 dark:text-white p-2 md:text-[38px] rounded-full cursor-pointer md:mr-1 lg:mr-3 md:block text-slate-800"
         />
 
         {/* Logo */}
@@ -55,7 +55,7 @@ const Navbar = ({ setLeftSideBarOpen }) => {
         {isMobile ? (
           <FiSearch
             onClick={() => isMobile && setIsOpen(!isOpen)}
-            className="text-xl text-slate-700"
+            className="text-xl dark:bg-slate-800 dark:text-white text-slate-700"
           />
         ) : (
           <SearchBar
@@ -76,7 +76,7 @@ const Navbar = ({ setLeftSideBarOpen }) => {
         )}
 
         {/* Microphone icon, visible only on medium screens and larger */}
-        <div className="hidden w-[40px] cursor-pointer h-[40px] ml-3 border text-slate-700 border-slate-300 rounded-full md:flex items-center justify-center">
+        <div className="hidden dark:bg-slate-800 dark:text-white w-[40px] cursor-pointer h-[40px] ml-3 border text-slate-700 border-slate-300 rounded-full md:flex items-center justify-center">
           <HiOutlineMicrophone className="text-[18px]" />
         </div>
       </div>
@@ -90,7 +90,7 @@ const Navbar = ({ setLeftSideBarOpen }) => {
             className="w-[40px] h-[40px] border border-[#b3b3b3] overflow-hidden rounded-full flex items-center justify-center"
           >
             <img
-              src={userInfo.photoUrl || userPng}
+              src={userInfo.photoURL || userPng}
               alt="ProfilePhoto"
               className="h-full w-full object-cover cursor-pointer"
             />
