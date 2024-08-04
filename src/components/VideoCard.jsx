@@ -18,7 +18,7 @@ const VideoCard = ({ isHorizantal, item, setWatchLater }) => {
         onClick={() => navigate(`/video/${item?.video?.videoId}`)}
         className={` select-none flex mx-auto relative ${
           isHorizantal
-            ? " md:h-[170px]  w-[95%] md:w-fit"
+            ? " md:h-[170px]  w-[95%] md:w-[500px]"
             : "md:w-[290px] w-[300px] h-[273px]"
         } cursor-pointer rounded-[10px] overflow-hidden`}
       >
