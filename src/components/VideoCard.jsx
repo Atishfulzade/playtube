@@ -16,9 +16,9 @@ const VideoCard = ({ isHorizantal, item, setWatchLater }) => {
     item.type == "video" && (
       <div
         onClick={() => navigate(`/video/${item?.video?.videoId}`)}
-        className={` select-none mx-auto relative ${
+        className={` select-none flex mx-auto relative ${
           isHorizantal
-            ? "flex md:h-[170px]  w-[95%] md:w-[700px]"
+            ? " md:h-[170px]  w-[95%] md:w-fit"
             : "md:w-[290px] w-[300px] h-[273px]"
         } cursor-pointer rounded-[10px] overflow-hidden`}
       >
@@ -53,14 +53,16 @@ const VideoCard = ({ isHorizantal, item, setWatchLater }) => {
                   }}
                   className={
                     isHorizantal
-                      ? "text-xl absolute right-1 z-50 bg-white top-1"
-                      : "text-xl z-50  bg-white"
+                      ? "text-xl absolute right-1  bg-white top-1"
+                      : "text-xl   bg-white"
                   }
                 />
               </div>
               <div className="flex items-end gap-2">
                 <div className="flex flex-col">
-                  <h4 className="line-clamp-1">{item?.video?.author?.title}</h4>
+                  <h4 className="line-clamp-1 font-poppins text-sm">
+                    {item?.video?.author?.title}
+                  </h4>
                   <div
                     className={`flex gap-2 w-full  whitespace-nowrap${
                       isHorizantal ? "flex-row " : "flex-row "
@@ -76,7 +78,7 @@ const VideoCard = ({ isHorizantal, item, setWatchLater }) => {
                     </span>
                   </div>
                   {isHorizantal && (
-                    <p className="w-full line-clamp-2 text-[13px] md:text-xl">
+                    <p className="w-full line-clamp-3 text-[13px] md:text-[15px]">
                       {item?.video?.descriptionSnippet}
                     </p>
                   )}

@@ -6,6 +6,9 @@ export default {
       backgroundImage: {
         "gradient-to-white": "linear-gradient(to right, transparent, white)",
       },
+      fontFamily: {
+        poppins: ["Poppins", "sans-serif"], // Add Poppins font here
+      },
     },
   },
   plugins: [],

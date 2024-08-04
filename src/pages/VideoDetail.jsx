@@ -19,7 +19,7 @@ import { useSelector } from "react-redux";
 import { convertLanguage } from "../utils/convertLanguage";
 import { convertCountryIntoCode } from "../utils/convertCountry";
 
-const VideoDetail = () => {
+const VideoDetail = ({ setLeftSideBarOpen }) => {
   const { id } = useParams();
   const language = useSelector((state) => state.loggedStatus.language);
   const location = useSelector((state) => state.loggedStatus.country);
@@ -32,6 +32,7 @@ const VideoDetail = () => {
   const navigate = useNavigate();
   useEffect(() => {
     const fetchVideos = async () => {
+      setLeftSideBarOpen(false);
       try {
         const videoPromise = fetchData(
           `video/details/?id=${id}&hl=${convertLanguage(

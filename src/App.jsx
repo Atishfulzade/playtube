@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { ToastContainer } from "react-toastify";
 import Layout from "./components/Layout";
 import { setIsMobile } from "./redux_Store/windowSizeSlice";
@@ -21,7 +21,7 @@ const Post = lazy(() => import("./pages/Post"));
 function App() {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => state.loggedStatus.isLoggedIn);
-
+  const [leftSideBarOpen, setLeftSideBarOpen] = useState(true);
   // Function to check window size
   const checkWindowSize = () => {
     const isMobile = window.innerWidth <= 768;
@@ -52,12 +52,23 @@ function App() {
         theme="colored"
       />
       <Routes>
-        <Route path="/" element={<Layout />}>
+        <Route
+          path="/"
+          element={
+            <Layout
+              leftSideBarOpen={leftSideBarOpen}
+              setLeftSideBarOpen={setLeftSideBarOpen}
+            />
+          }
+        >
           <Route
             index
             element={
               <Suspense fallback={<Loader />}>
-                <Feed />
+                <Feed
+                  leftSideBarOpen={leftSideBarOpen}
+                  setLeftSideBarOpen={setLeftSideBarOpen}
+                />
               </Suspense>
             }
           />
@@ -65,7 +76,10 @@ function App() {
             path="search/:searchTerm"
             element={
               <Suspense fallback={<Loader />}>
-                <SearchFeed />
+                <SearchFeed
+                  leftSideBarOpen={leftSideBarOpen}
+                  setLeftSideBarOpen={setLeftSideBarOpen}
+                />
               </Suspense>
             }
           />
@@ -73,7 +87,10 @@ function App() {
             path="channel/:id"
             element={
               <Suspense fallback={<Loader />}>
-                <ChannelDetails />
+                <ChannelDetails
+                  leftSideBarOpen={leftSideBarOpen}
+                  setLeftSideBarOpen={setLeftSideBarOpen}
+                />
               </Suspense>
             }
           />
@@ -81,7 +98,10 @@ function App() {
             path="video/:id"
             element={
               <Suspense fallback={<Loader />}>
-                <VideoDetail />
+                <VideoDetail
+                  leftSideBarOpen={leftSideBarOpen}
+                  setLeftSideBarOpen={setLeftSideBarOpen}
+                />
               </Suspense>
             }
           />
@@ -89,7 +109,10 @@ function App() {
             path="history"
             element={
               <Suspense fallback={<Loader />}>
-                <History />
+                <History
+                  leftSideBarOpen={leftSideBarOpen}
+                  setLeftSideBarOpen={setLeftSideBarOpen}
+                />
               </Suspense>
             }
           />
@@ -97,7 +120,10 @@ function App() {
             path="view_later"
             element={
               <Suspense fallback={<Loader />}>
-                <WatchLater />
+                <WatchLater
+                  leftSideBarOpen={leftSideBarOpen}
+                  setLeftSideBarOpen={setLeftSideBarOpen}
+                />
               </Suspense>
             }
           />
@@ -105,7 +131,10 @@ function App() {
             path="liked_video"
             element={
               <Suspense fallback={<Loader />}>
-                <LikedVideos />
+                <LikedVideos
+                  leftSideBarOpen={leftSideBarOpen}
+                  setLeftSideBarOpen={setLeftSideBarOpen}
+                />
               </Suspense>
             }
           />
@@ -116,7 +145,10 @@ function App() {
             path="post"
             element={
               <Suspense fallback={<Loader />}>
-                <Post />
+                <Post
+                  leftSideBarOpen={leftSideBarOpen}
+                  setLeftSideBarOpen={setLeftSideBarOpen}
+                />
               </Suspense>
             }
           />
@@ -124,7 +156,10 @@ function App() {
             path="*"
             element={
               <Suspense fallback={<Loader />}>
-                <ErrorPage />
+                <ErrorPage
+                  leftSideBarOpen={leftSideBarOpen}
+                  setLeftSideBarOpen={setLeftSideBarOpen}
+                />
               </Suspense>
             }
           />

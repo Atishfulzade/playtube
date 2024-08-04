@@ -9,7 +9,7 @@ import { auth } from "../../firebase.config";
 import LeftSidebar from "./LeftSidebar";
 import Navbar from "./Navbar";
 
-const Layout = () => {
+const Layout = ({ leftSideBarOpen, setLeftSideBarOpen }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
@@ -31,10 +31,10 @@ const Layout = () => {
   }, [navigate, dispatch]);
 
   return (
-    <div className="flex flex-col">
-      <Navbar />
+    <div className="flex flex-col transition-all">
+      <Navbar setLeftSideBarOpen={setLeftSideBarOpen} />
       <div className="flex w-full">
-        {absolutePath !== "video" && <LeftSidebar />}
+        {absolutePath !== "video" && leftSideBarOpen && <LeftSidebar />}
 
         <div className="w-full md:w-[80%]">
           <Outlet />

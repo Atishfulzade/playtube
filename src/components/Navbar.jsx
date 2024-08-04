@@ -11,7 +11,7 @@ import SuggestionPage from "./SuggestionPage";
 import AuthenticationPage from "./AuthenticationPage";
 import { useNavigate } from "react-router-dom";
 import MobileSuggestion from "./MobileSuggestion";
-const Navbar = () => {
+const Navbar = ({ setLeftSideBarOpen }) => {
   const settingCardRef = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
   // State to track whether the user is logged in
@@ -40,9 +40,12 @@ const Navbar = () => {
   return (
     <div className="w-full  transition-all sticky top-0 bg-white z-20 px-1  md:px-6 flex items-center justify-between h-16">
       {/* Left side of the navbar */}
-      <div className="flex items-center ">
+      <div className="flex select-none items-center ">
         {/* Hamburger menu icon, visible only on medium screens and larger */}
-        <HiOutlineMenu className="hidden md:text-[28px] md:mr-1 lg:mr-3 md:block text-slate-800" />
+        <HiOutlineMenu
+          onClick={() => setLeftSideBarOpen((prev) => !prev)}
+          className="hidden hover:bg-slate-200 p-2 md:text-[38px] rounded-full cursor-pointer md:mr-1 lg:mr-3 md:block text-slate-800"
+        />
 
         {/* Logo */}
         <img src={logo} alt="Logo" className=" h-[60px] mt-3" />
@@ -74,7 +77,7 @@ const Navbar = () => {
 
         {/* Microphone icon, visible only on medium screens and larger */}
         <div className="hidden w-[40px] cursor-pointer h-[40px] ml-3 border text-slate-700 border-slate-300 rounded-full md:flex items-center justify-center">
-          <HiOutlineMicrophone className="text-[20px]" />
+          <HiOutlineMicrophone className="text-[18px]" />
         </div>
       </div>
 

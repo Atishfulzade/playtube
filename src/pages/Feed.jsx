@@ -5,7 +5,7 @@ import { fetchData } from "../utils/FetchData";
 
 import { convertLanguage } from "../utils/convertLanguage";
 import { convertCountryIntoCode } from "../utils/convertCountry";
-const Feed = () => {
+const Feed = ({ setLeftSideBarOpen }) => {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [videoData, setVideoData] = useState(null);
   const [nextPageToken, setNextPageToken] = useState(null);
@@ -16,6 +16,7 @@ const Feed = () => {
   const [watchLater, setWatchLater] = useState([]);
   useEffect(() => {
     const fetchVideos = async () => {
+      setLeftSideBarOpen(true);
       setLoading(true);
       try {
         const response = await fetchData(
