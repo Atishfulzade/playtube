@@ -32,6 +32,7 @@ function SettingSidebar() {
   const language = useSelector((state) => state.loggedStatus.language);
   const location = useSelector((state) => state.loggedStatus.country);
 
+  // Apply the selected theme to the document
   const applyTheme = (theme) => {
     const htmlElement = document.documentElement;
     if (theme === "Dark theme") {
@@ -41,6 +42,7 @@ function SettingSidebar() {
     }
   };
 
+  // Handle Google Sign-In
   const loginWithGoogle = async () => {
     try {
       const result = await signInWithPopup(auth, googleProvider);
@@ -59,6 +61,7 @@ function SettingSidebar() {
     }
   };
 
+  // Handle Sign-Out
   const handleSignOut = async () => {
     try {
       dispatch(setUser({}));
@@ -71,6 +74,7 @@ function SettingSidebar() {
     }
   };
 
+  // Data for the sidebar options
   const settingSidebarData = [
     {
       id: 1,
@@ -93,6 +97,7 @@ function SettingSidebar() {
     { id: 5, icon: <SlGlobe size="22" />, name: `Location: ${location}` },
   ];
 
+  // Set the selected option and close the sidebar
   function settingSidebarMenu(id) {
     setSettingOptionsId(id);
     setIsSettingSidebar(false);
@@ -119,7 +124,7 @@ function SettingSidebar() {
             {userInfo?.displayName || userInfo?.email}
           </p>
         </div>
-        <div className="">
+        <div>
           {settingSidebarData.map((item) => (
             <div
               className={`flex items-center cursor-pointer hover:bg-slate-200 dark:hover:bg-slate-700 py-2 px-3 ${

@@ -14,9 +14,13 @@ const WatchLater = ({ setLeftSideBarOpen }) => {
       const user = auth.currentUser;
 
       if (user) {
-        const userData = await getUserData(user.uid);
-        if (userData) {
-          setData(userData.watchLater || []);
+        try {
+          const userData = await getUserData(user.uid);
+          if (userData) {
+            setData(userData.watchLater || []);
+          }
+        } catch (error) {
+          console.error("Error fetching user data:", error.message);
         }
       } else {
         console.error("No user is signed in");
@@ -33,8 +37,12 @@ const WatchLater = ({ setLeftSideBarOpen }) => {
       const user = auth.currentUser;
 
       if (user) {
-        await saveUserData(user.uid, { watchLater: list });
-        setData(list);
+        try {
+          await saveUserData(user.uid, { watchLater: list });
+          setData(list);
+        } catch (error) {
+          console.error("Error saving user data:", error.message);
+        }
       } else {
         console.error("No user is signed in");
       }
@@ -45,15 +53,11 @@ const WatchLater = ({ setLeftSideBarOpen }) => {
 
   return (
     <div className="flex pb-10 p-5 flex-col h-full w-full">
-      <h3 className="mb-3 md:text-xl">Your Watch later videos</h3>
-      {data.length < 1 ? (
-        "No video available"
+      <h3 className="mb-3 md:text-xl">Your Watch Later Videos</h3>
+      {data.length === 0 ? (
+        <p>No videos available</p>
       ) : (
-        <Videos
-          videoData={data}
-          add={false}
-          flex={"items-start justify-start"}
-        />
+        <Videos videoData={data} add={false} flex="items-start justify-start" />
       )}
     </div>
   );

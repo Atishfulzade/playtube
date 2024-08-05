@@ -19,7 +19,8 @@ const LeftSidebar = () => {
   const [isIconActive, setIsIconActive] = useState("Home");
 
   return isMobile ? (
-    <div className="fixed left-0 dark:bg-slate-700 dark:text-white z-50 bottom-0 bg-slate-100 py-1 flex items-center justify-around w-[100%]">
+    // Mobile view sidebar
+    <div className="fixed left-0 dark:bg-slate-700 dark:text-white z-50 bottom-0 bg-slate-100 py-1 flex items-center justify-around w-full">
       {sidebarMobileMenu.map((item, index) => (
         <div
           key={index}
@@ -35,7 +36,7 @@ const LeftSidebar = () => {
           onClick={() => {
             if (!isLoggedIn && !item.access) {
               toast(
-                " Sign in to like videos,history, and save for later view."
+                "Sign in to like videos, history, and save for later view."
               );
               return;
             }
@@ -49,7 +50,7 @@ const LeftSidebar = () => {
     </div>
   ) : (
     // Desktop view sidebar
-    <div className="px-6 leftbar dark:bg-slate-800 dark:text-white  w-[20%] md:h-[90vh] overflow-y-scroll  z-50 sticky left-0 top-16">
+    <div className="px-6 leftbar dark:bg-slate-800 dark:text-white w-[20%] md:h-[90vh] overflow-y-scroll z-50 sticky left-0 top-16">
       <div className="leftbar flex flex-col gap-3">
         {leftSidebarMenu1.map((item, index) => (
           <div
@@ -84,11 +85,11 @@ const LeftSidebar = () => {
             </div>
           ))
         ) : (
-          <div className="flex  flex-col gap-5 justify-center">
-            <p className="flex-wrap text-sm md:text-[15px] text-start dark:bg-slate-800  ">
+          <div className="flex flex-col gap-5 justify-center">
+            <p className="flex-wrap text-sm md:text-[15px] text-start dark:bg-slate-800">
               Sign in to like videos,
-              <br /> history, and save <br />
-              for later view.
+              <br /> history, and save
+              <br /> for later view.
             </p>
             <button
               className="py-1 bg-white border-blue-500 border text-blue-500 w-fit px-5 rounded-full"

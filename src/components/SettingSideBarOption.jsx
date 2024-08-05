@@ -16,6 +16,7 @@ function SettingSidebarOption({
     setVisible(false);
     setIsSettingSidebar(true);
 
+    // Apply theme if the heading is "Appearance"
     if (heading === "Appearance") {
       if (option === "Dark theme") {
         document.documentElement.classList.add("dark");
@@ -51,7 +52,7 @@ function SettingSidebarOption({
         {arrData.map((item, index) => (
           <div
             className={`flex items-center py-2 px-3 ${
-              item === selectOption ? "bg-slate-200 dark:bg-slate-700" : ""
+              item.name === selectOption ? "bg-slate-200 dark:bg-slate-700" : ""
             }`}
             key={index}
             onClick={() => handleOptionClick(item.name)}

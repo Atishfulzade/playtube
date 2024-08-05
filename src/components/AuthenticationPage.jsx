@@ -13,27 +13,32 @@ import { toast } from "react-toastify";
 
 const AuthenticationPage = () => {
   const navigate = useNavigate();
-  const [isRegister, setIsRegister] = useState(false);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [isRegister, setIsRegister] = useState(false); // Toggle between register and login
+  const [email, setEmail] = useState(""); // Email state
+  const [password, setPassword] = useState(""); // Password state
   const dispatch = useDispatch();
 
+  // Function to handle form submission for registration or login
   const submitDetails = async (e) => {
     e.preventDefault();
     try {
       let user;
       if (isRegister) {
+        // Register new user
         const result = await createUserWithEmailAndPassword(
           auth,
           email,
           password
         );
         user = result.user;
+        toast.success("Registration successful!");
       } else {
+        // Login existing user
         const result = await signInWithEmailAndPassword(auth, email, password);
         user = result.user;
         toast.success("Login successful!");
       }
+      // Dispatch user information to the Redux store
       dispatch(
         setUser({
           name: user.displayName,
@@ -42,16 +47,17 @@ const AuthenticationPage = () => {
         })
       );
       dispatch(setIsLoggedIn(true));
-      navigate("/");
-      setEmail("");
-      setPassword("");
+      navigate("/"); // Navigate to home page
+      setEmail(""); // Clear email field
+      setPassword(""); // Clear password field
     } catch (error) {
       toast.error(error.message);
-      setEmail("");
-      setPassword("");
+      setEmail(""); // Clear email field
+      setPassword(""); // Clear password field
     }
   };
 
+  // Function to handle login with Google
   const loginWithGoogle = async () => {
     try {
       const result = await signInWithPopup(auth, googleProvider);
@@ -64,7 +70,7 @@ const AuthenticationPage = () => {
           photoURL: user.photoURL,
         })
       );
-      navigate("/");
+      navigate("/"); // Navigate to home page
     } catch (error) {
       toast.error("Login failed: " + error.message);
     }
@@ -92,7 +98,7 @@ const AuthenticationPage = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             id="email"
-            className="bg-gray-50 border  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
             placeholder="you@example.com"
             required
           />

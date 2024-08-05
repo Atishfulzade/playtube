@@ -1,5 +1,4 @@
 import React from "react";
-import { formattedDate } from "../utils/formattedDate";
 import { BsThreeDotsVertical } from "react-icons/bs";
 
 const PlayListCard = ({ data }) => {
@@ -30,9 +29,7 @@ const PlayListCard = ({ data }) => {
                 <div
                   className={`flex gap-2 w-full  whitespace-nowrap text-[12px]   text-slate-600`}
                 >
-                  <span className="whitespace-nowrap">
-                    {/* {formattedDate(data?.playlist?.updatedTime)} */}
-                  </span>
+                  <span className="whitespace-nowrap"></span>
                 </div>
               </div>
             </div>

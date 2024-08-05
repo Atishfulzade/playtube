@@ -1,10 +1,9 @@
-import React, { useState } from "react";
-import { BsThreeDotsVertical } from "react-icons/bs";
+import React from "react";
 import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 
 const Comments = ({ comm }) => {
-  const navigate = useNavigate();
+  const navigate = useNavigate(); //for navigation
 
   return (
     <div className="my-5 dark:bg-slate-800 dark:text-white">
