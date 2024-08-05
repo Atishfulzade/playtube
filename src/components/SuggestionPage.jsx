@@ -57,7 +57,7 @@ const SuggestionPage = ({ input, isOpen, setIsOpen, setInput }) => {
           </div>
         </div>
       )}
-      <div className="p-3  gap-1 items-start flex flex-col  top-14  ">
+      <div className="py-1 px-3 w-full gap-1 items-start flex flex-col  top-14  ">
         <div className="flex w-full cursor-pointer  justify-end">
           {isMobile ? (
             <MdOutlineClose
@@ -68,7 +68,7 @@ const SuggestionPage = ({ input, isOpen, setIsOpen, setInput }) => {
             ""
           )}
         </div>
-        <div className="flex flex-col w-full overflow-y-auto h-[300px] md:h-[200px]">
+        <div className="flex flex-col w-full gap-2 overflow-y-auto h-[300px] md:h-[200px]">
           {suggestions?.map((keys, i) => (
             <div
               key={i}
@@ -76,7 +76,7 @@ const SuggestionPage = ({ input, isOpen, setIsOpen, setInput }) => {
                 navigate(`/search/${keys}`);
                 setInput("");
               }}
-              className="px-2  py-2 rounded-sm md:text-[18px] text-sm leading-3  cursor-pointer w-full hover:bg-slate-100"
+              className="px-2  py-2 rounded-sm md:text-[18px] text-sm leading-3 dark:text-slate-100  cursor-pointer w-full hover:bg-slate-700"
             >
               {keys}
             </div>

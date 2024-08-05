@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import { formatViews } from "../utils/formatViews";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { MdDeleteOutline } from "react-icons/md";
 import { IoBookmarkOutline } from "react-icons/io5";
 import { addVideo, removeVideo } from "../redux_Store/viewLaterVideoSlice"; // Adjust the import path as necessary
@@ -45,6 +45,7 @@ const VideoCard = ({ isHorizantal, item, add }) => {
     e.stopPropagation();
     setToggleBtn(!toggleBtn);
   };
+
   const setHistory = () => {
     dispatch(setHistoryVideo(item));
   };
@@ -56,7 +57,7 @@ const VideoCard = ({ isHorizantal, item, add }) => {
           setHistory();
           navigate(`/video/${videoId}`);
         }}
-        className={`select-none dark:bg-slate-700 dark:text-white flex mx-auto relative ${
+        className={`select-none dark:bg-slate-800 dark:text-white flex mx-auto relative ${
           isHorizantal
             ? "md:h-[170px] w-[95%] md:w-[600px] flex-row"
             : "md:w-[290px] w-[300px] h-[273px] flex-col"
@@ -82,15 +83,15 @@ const VideoCard = ({ isHorizantal, item, add }) => {
             )}
             <div className="ml-2 flex flex-col">
               <div className="flex relative">
-                <h3 className="text-sm w-[95%] pt-0 md:text-[17px] font-semibold line-clamp-2 text-slate-900">
+                <h3 className="text-sm dark:text-white w-[95%] pt-0 md:text-[17px] font-semibold line-clamp-2 text-slate-900">
                   {videoTitle}
                 </h3>
                 <BsThreeDotsVertical
                   onClick={toggleOptions}
                   className={
                     isHorizantal
-                      ? "text-xl absolute right-1 bg-white top-1"
-                      : "text-xl bg-white"
+                      ? "text-xl absolute right-1 dark:bg-slate-800 dark:text-white bg-white top-1"
+                      : "text-xl bg-white dark:bg-slate-800 dark:text-white"
                   }
                 />
                 {toggleBtn && (
@@ -115,7 +116,7 @@ const VideoCard = ({ isHorizantal, item, add }) => {
               </div>
               <div className="flex items-end gap-2">
                 <div className="flex flex-col">
-                  <h4 className="line-clamp-1 font-poppins text-sm">
+                  <h4 className="line-clamp-1 font-poppins text-sm dark:bg-slate-800 dark:text-white">
                     {authorTitle}
                   </h4>
                   <div
@@ -123,23 +124,23 @@ const VideoCard = ({ isHorizantal, item, add }) => {
                       isHorizantal ? "flex-row" : "flex-col gap-0"
                     } text-[12px] text-slate-600`}
                   >
-                    <span className="whitespace-nowrap">
+                    <span className="whitespace-nowrap dark:bg-slate-800 dark:text-slate-100">
                       {isLiveNow
                         ? viewers + " watching"
                         : formatViews(views) + " views"}
                     </span>
-                    <span className="whitespace-nowrap">
+                    <span className="whitespace-nowrap dark:text-slate-100">
                       {publishedTimeText}
                     </span>
                   </div>
                   {isHorizantal && (
-                    <p className="w-full line-clamp-2 md:line-clamp-3 text-[13px] md:text-[15px]">
+                    <p className="w-full line-clamp-2 dark:bg-slate-800 dark:text-slate-50 md:line-clamp-3 text-[13px] md:text-[15px]">
                       {descriptionSnippet}
                     </p>
                   )}
                 </div>
                 {isLiveNow && (
-                  <span className="bg-red-600 absolute right-0 py-[2px] flex items-center justify-center h-fit px-3 text-center mb-0 text-white rounded">
+                  <span className="bg-red-600 absolute right-0 py-[2px] dark:text-white items-center justify-center h-fit px-3 text-center mb-0 text-white rounded">
                     Live
                   </span>
                 )}

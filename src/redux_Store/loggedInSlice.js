@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   isLoggedIn: false,
   user: null,
-  theme: "Device theme",
+  theme: "Light theme",
   country: "India",
   language: "English",
 };

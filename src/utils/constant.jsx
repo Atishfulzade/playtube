@@ -290,11 +290,7 @@ const languages = [
   { name: "Urdu", code: "ur" },
   { name: "Vietnamese", code: "vi" },
 ];
-const deviceTheme = [
-  { name: "Device theme" },
-  { name: "Dark theme" },
-  { name: "Light theme" },
-];
+const deviceTheme = [{ name: "Dark theme" }, { name: "Light theme" }];
 export {
   thumbnailsURL,
   channelName,
