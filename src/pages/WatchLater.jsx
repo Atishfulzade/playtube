@@ -7,7 +7,7 @@ const WatchLater = ({ setLeftSideBarOpen }) => {
   return (
     <div className="flex pb-10 p-5 flex-col h-full w-full">
       <h3 className="mb-3  md:text-xl">Your Watch later videos</h3>
-      {!data ? (
+      {data.length < 1 ? (
         "No video available"
       ) : (
         <Videos

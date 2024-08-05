@@ -7,6 +7,7 @@ import { MdDeleteOutline } from "react-icons/md";
 import { IoBookmarkOutline } from "react-icons/io5";
 import { addVideo, removeVideo } from "../redux_Store/viewLaterVideoSlice"; // Adjust the import path as necessary
 import { toast } from "react-toastify";
+import { setHistoryVideo } from "../redux_Store/historyVideoSlice";
 
 const VideoCard = ({ isHorizantal, item, add }) => {
   const navigate = useNavigate();
@@ -44,11 +45,17 @@ const VideoCard = ({ isHorizantal, item, add }) => {
     e.stopPropagation();
     setToggleBtn(!toggleBtn);
   };
+  const setHistory = () => {
+    dispatch(setHistoryVideo(item));
+  };
 
   return (
     item.type === "video" && (
       <div
-        onClick={() => navigate(`/video/${videoId}`)}
+        onClick={() => {
+          setHistory();
+          navigate(`/video/${videoId}`);
+        }}
         className={`select-none dark:bg-slate-700 dark:text-white flex mx-auto relative ${
           isHorizantal
             ? "md:h-[170px] w-[95%] md:w-[600px] flex-row"
