@@ -13,7 +13,7 @@ const VideoCard = ({ isHorizantal, item, add }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [toggleBtn, setToggleBtn] = useState(false);
-
+  const isLoggedIn = useSelector((state) => state.loggedStatus.isLoggedIn);
   const {
     video: {
       videoId,
@@ -29,9 +29,13 @@ const VideoCard = ({ isHorizantal, item, add }) => {
 
   const handleAddToWatchLater = (e) => {
     e.stopPropagation();
-    dispatch(addVideo(item));
-    toast.success("Added to watch later successfully");
-    setToggleBtn(false);
+    if (isLoggedIn) {
+      dispatch(addVideo(item));
+      toast.success("Added to watch later successfully");
+      setToggleBtn(false);
+    } else {
+      toast.error("Please sign in ");
+    }
   };
 
   const handleRemoveVideo = (e) => {
@@ -47,7 +51,9 @@ const VideoCard = ({ isHorizantal, item, add }) => {
   };
 
   const setHistory = () => {
-    dispatch(setHistoryVideo(item));
+    if (isLoggedIn) {
+      dispatch(setHistoryVideo(item));
+    }
   };
 
   return (
