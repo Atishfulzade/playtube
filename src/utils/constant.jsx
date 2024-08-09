@@ -17,6 +17,7 @@ import { PiDress } from "react-icons/pi";
 import { MdOutlineTheaterComedy } from "react-icons/md";
 import { PiLightbulbFilamentLight } from "react-icons/pi";
 import { TbBrandGooglePodcasts } from "react-icons/tb";
+import { SiYoutubeshorts } from "react-icons/si";
 
 const thumbnailsURL =
   "https://images.unsplash.com/photo-1719937206109-7f4e933230c8?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
@@ -71,7 +72,7 @@ const categories = [
 
 const leftSidebarMenu1 = [
   { icon: <GoHome size={24} />, title: "Home", path: "/" },
-  { icon: <BsPostcard size={24} />, title: "Post", path: "post" },
+  { icon: <SiYoutubeshorts size={24} />, title: "Shorts", path: "shorts" },
 ];
 const leftSidebarMenu2 = [
   { icon: <GoHistory size={24} />, title: "History", path: "history" },
@@ -79,18 +80,42 @@ const leftSidebarMenu2 = [
   { icon: <BiLike size={24} />, title: "Liked videos", path: "liked_video" },
 ];
 const exploreMenu = [
-  { icon: <AiOutlineFire size={24} />, title: "Trending" },
-  { icon: <AiOutlineShopping size={24} />, title: "Shopping" },
-  { icon: <HiOutlineMusicalNote size={24} />, title: "Music" },
-  { icon: <MdOutlineMovie size={24} />, title: "Movies" },
-  { icon: <GoBroadcast size={24} />, title: "Live" },
-  { icon: <IoGameControllerOutline size={24} />, title: "Gaming" },
-  { icon: <PiNewspaperClipping size={24} />, title: "News" },
-  { icon: <GoTrophy size={24} />, title: "Sports" },
-  { icon: <PiLightbulbFilamentLight size={24} />, title: "Courses" },
-  { icon: <PiDress size={24} />, title: "Fashion & Beauty" },
-  { icon: <TbBrandGooglePodcasts size={24} />, title: "Podcasts" },
-  { icon: <MdOutlineTheaterComedy size={24} />, title: "Comedy" },
+  { icon: <AiOutlineFire size={24} />, title: "Trending", path: "trending" },
+  {
+    icon: <AiOutlineShopping size={24} />,
+    title: "Shopping",
+    path: "shopping",
+  },
+  { icon: <HiOutlineMusicalNote size={24} />, title: "Music", path: "music" },
+  { icon: <MdOutlineMovie size={24} />, title: "Movies", path: "movies" },
+  { icon: <GoBroadcast size={24} />, title: "Live", path: "live" },
+  {
+    icon: <IoGameControllerOutline size={24} />,
+    title: "Gaming",
+    path: "gaming",
+  },
+  { icon: <PiNewspaperClipping size={24} />, title: "News", path: "news" },
+  { icon: <GoTrophy size={24} />, title: "Sports", path: "sport" },
+  {
+    icon: <PiLightbulbFilamentLight size={24} />,
+    title: "Courses",
+    path: "courses",
+  },
+  {
+    icon: <PiDress size={24} />,
+    title: "Fashion & Beauty",
+    path: "fashion&beauty",
+  },
+  {
+    icon: <TbBrandGooglePodcasts size={24} />,
+    title: "Podcasts",
+    path: "podcast",
+  },
+  {
+    icon: <MdOutlineTheaterComedy size={24} />,
+    title: "Comedy",
+    path: "comedy",
+  },
 ];
 
 const sidebarMobileMenu = [

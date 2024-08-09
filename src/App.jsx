@@ -6,6 +6,7 @@ import Layout from "./components/Layout";
 import { setIsMobile } from "./redux_Store/windowSizeSlice";
 import { lazy, Suspense } from "react";
 import { AuthenticationPage, Loader } from "./components";
+import { Comedy } from "./pages";
 
 // Lazy load pages
 const ChannelDetails = lazy(() => import("./pages/ChannelDetails"));
@@ -17,6 +18,18 @@ const WatchLater = lazy(() => import("./pages/WatchLater"));
 const LikedVideos = lazy(() => import("./pages/LikedVideos"));
 const ErrorPage = lazy(() => import("./pages/ErrorPage"));
 const Post = lazy(() => import("./pages/Post"));
+const Trending = lazy(() => import("./pages/Trending"));
+const Shopping = lazy(() => import("./pages/Shopping"));
+const Music = lazy(() => import("./pages/Music"));
+const Movies = lazy(() => import("./pages/Movies"));
+const Live = lazy(() => import("./pages/Live"));
+const Gaming = lazy(() => import("./pages/Gaming"));
+const News = lazy(() => import("./pages/News"));
+const Sports = lazy(() => import("./pages/Sports"));
+const Course = lazy(() => import("./pages/Course"));
+const Fashion = lazy(() => import("./pages/Fashion"));
+const Podcast = lazy(() => import("./pages/Podcast"));
+const Camedy = lazy(() => import("./pages/Comedy"));
 
 function App() {
   const dispatch = useDispatch();
@@ -142,10 +155,142 @@ function App() {
             <Route path="authenticate" element={<AuthenticationPage />} />
           )}
           <Route
-            path="post"
+            path="shorts"
             element={
               <Suspense fallback={<Loader />}>
                 <Post
+                  leftSideBarOpen={leftSideBarOpen}
+                  setLeftSideBarOpen={setLeftSideBarOpen}
+                />
+              </Suspense>
+            }
+          />
+          <Route
+            path="trending"
+            element={
+              <Suspense fallback={<Loader />}>
+                <Trending
+                  leftSideBarOpen={leftSideBarOpen}
+                  setLeftSideBarOpen={setLeftSideBarOpen}
+                />
+              </Suspense>
+            }
+          />
+          <Route
+            path="shopping"
+            element={
+              <Suspense fallback={<Loader />}>
+                <Shopping
+                  leftSideBarOpen={leftSideBarOpen}
+                  setLeftSideBarOpen={setLeftSideBarOpen}
+                />
+              </Suspense>
+            }
+          />
+          <Route
+            path="music"
+            element={
+              <Suspense fallback={<Loader />}>
+                <Music
+                  leftSideBarOpen={leftSideBarOpen}
+                  setLeftSideBarOpen={setLeftSideBarOpen}
+                />
+              </Suspense>
+            }
+          />
+          <Route
+            path="Movies"
+            element={
+              <Suspense fallback={<Loader />}>
+                <Movies
+                  leftSideBarOpen={leftSideBarOpen}
+                  setLeftSideBarOpen={setLeftSideBarOpen}
+                />
+              </Suspense>
+            }
+          />
+          <Route
+            path="live"
+            element={
+              <Suspense fallback={<Loader />}>
+                <Live
+                  leftSideBarOpen={leftSideBarOpen}
+                  setLeftSideBarOpen={setLeftSideBarOpen}
+                />
+              </Suspense>
+            }
+          />
+          <Route
+            path="gaming"
+            element={
+              <Suspense fallback={<Loader />}>
+                <Gaming
+                  leftSideBarOpen={leftSideBarOpen}
+                  setLeftSideBarOpen={setLeftSideBarOpen}
+                />
+              </Suspense>
+            }
+          />
+          <Route
+            path="news"
+            element={
+              <Suspense fallback={<Loader />}>
+                <News
+                  leftSideBarOpen={leftSideBarOpen}
+                  setLeftSideBarOpen={setLeftSideBarOpen}
+                />
+              </Suspense>
+            }
+          />
+          <Route
+            path="sport"
+            element={
+              <Suspense fallback={<Loader />}>
+                <Sports
+                  leftSideBarOpen={leftSideBarOpen}
+                  setLeftSideBarOpen={setLeftSideBarOpen}
+                />
+              </Suspense>
+            }
+          />
+          <Route
+            path="courses"
+            element={
+              <Suspense fallback={<Loader />}>
+                <Course
+                  leftSideBarOpen={leftSideBarOpen}
+                  setLeftSideBarOpen={setLeftSideBarOpen}
+                />
+              </Suspense>
+            }
+          />
+          <Route
+            path="fashion&beauty"
+            element={
+              <Suspense fallback={<Loader />}>
+                <Fashion
+                  leftSideBarOpen={leftSideBarOpen}
+                  setLeftSideBarOpen={setLeftSideBarOpen}
+                />
+              </Suspense>
+            }
+          />
+          <Route
+            path="podcast"
+            element={
+              <Suspense fallback={<Loader />}>
+                <Podcast
+                  leftSideBarOpen={leftSideBarOpen}
+                  setLeftSideBarOpen={setLeftSideBarOpen}
+                />
+              </Suspense>
+            }
+          />
+          <Route
+            path="comedy"
+            element={
+              <Suspense fallback={<Loader />}>
+                <Comedy
                   leftSideBarOpen={leftSideBarOpen}
                   setLeftSideBarOpen={setLeftSideBarOpen}
                 />

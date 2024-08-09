@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import { fetchData } from "../utils/FetchData";
 import { Videos } from "../components";
 
-const Post = () => {
+const Trending = () => {
   const [videoData, setVideoData] = useState([]);
 
   useEffect(() => {
     const fetchVideos = async () => {
       try {
-        const response = await fetchData(`search/?q=shorts&hl=en&gl=US`);
+        const response = await fetchData(`search/?q=trending&hl=en&gl=US`);
         setVideoData(response.contents);
       } catch (error) {
         console.error("Error fetching video data:", error.message);
@@ -25,4 +25,4 @@ const Post = () => {
   );
 };
 
-export default Post;
+export default Trending;
