@@ -78,7 +78,7 @@ const SuggestionPage = ({ input, isOpen, setIsOpen, setInput }) => {
                 setInput("");
                 setIsOpen(false); // Close the suggestions on selection
               }}
-              className="px-2 py-2 rounded-sm text-sm md:text-[18px] cursor-pointer hover:bg-slate-700 dark:text-slate-100"
+              className="px-2 py-2 rounded-sm text-sm md:text-[18px] cursor-pointer hover:bg-slate-100 dark:text-slate-100"
             >
               {suggestion}
             </div>
