@@ -5,7 +5,7 @@ import { formatViews } from "../utils/formatViews";
 import { useDispatch, useSelector } from "react-redux";
 import { MdDeleteOutline } from "react-icons/md";
 import { IoBookmarkOutline } from "react-icons/io5";
-import { addVideo, removeVideo } from "../redux_Store/viewLaterVideoSlice"; // Adjust import path as necessary
+import { addVideo, removeVideo } from "../redux_Store/viewLaterVideoSlice";
 import { toast } from "react-toastify";
 import { setHistoryVideo } from "../redux_Store/historyVideoSlice";
 
@@ -26,8 +26,8 @@ const VideoCard = ({ isHorizantal, item, add }) => {
   const {
     video: {
       videoId,
-      thumbnails,
-      author: { avatar, title: authorTitle } = {},
+      thumbnails = [],
+      author: { avatar = [], title: authorTitle } = {},
       title: videoTitle,
       stats: { viewers, views } = {},
       publishedTimeText,
@@ -36,10 +36,7 @@ const VideoCard = ({ isHorizantal, item, add }) => {
     } = {},
   } = item || {};
 
-  /**
-   * Handles adding the video to the watch later list
-   * @param {Event} e - The click event
-   */
+  // Handles adding the video to the watch later list
   const handleAddToWatchLater = (e) => {
     e.stopPropagation();
     if (isLoggedIn) {
@@ -47,14 +44,11 @@ const VideoCard = ({ isHorizantal, item, add }) => {
       toast.success("Added to watch later successfully");
       setToggleBtn(false);
     } else {
-      toast.error("Please sign in ");
+      toast.error("Please sign in");
     }
   };
 
-  /**
-   * Handles removing the video from the watch later list
-   * @param {Event} e - The click event
-   */
+  // Handles removing the video from the watch later list
   const handleRemoveVideo = (e) => {
     e.stopPropagation();
     dispatch(removeVideo(videoId));
@@ -62,18 +56,13 @@ const VideoCard = ({ isHorizantal, item, add }) => {
     setToggleBtn(false);
   };
 
-  /**
-   * Toggles the visibility of the options menu
-   * @param {Event} e - The click event
-   */
+  // Toggles the visibility of the options menu
   const toggleOptions = (e) => {
     e.stopPropagation();
     setToggleBtn(!toggleBtn);
   };
 
-  /**
-   * Sets the video to history
-   */
+  // Sets the video to history
   const setHistory = () => {
     if (isLoggedIn) {
       dispatch(setHistoryVideo(item));
@@ -98,16 +87,16 @@ const VideoCard = ({ isHorizantal, item, add }) => {
           className={`h-[167px] rounded-[10px] ${
             isHorizantal ? "h-full md:w-[290px] w-[55%]" : "w-full"
           }`}
-          src={thumbnails[0]?.url}
+          src={thumbnails[0]?.url || "placeholder-image-url"}
           alt={authorTitle}
           loading="lazy"
         />
         <div className={isHorizantal ? "px-1 md:px-2 py-0" : "p-2"}>
           <div className="flex">
             {/* Author Avatar for Vertical Layout */}
-            {!isHorizantal && (
+            {!isHorizantal && avatar[0]?.url && (
               <img
-                src={avatar[0]?.url}
+                src={avatar[0]?.url || "placeholder-avatar-url"}
                 alt={authorTitle}
                 loading="lazy"
                 className="h-10 w-10 rounded-full object-cover"
@@ -163,8 +152,8 @@ const VideoCard = ({ isHorizantal, item, add }) => {
                   >
                     <span className="whitespace-nowrap dark:bg-slate-800 dark:text-slate-100">
                       {isLiveNow
-                        ? viewers + " watching"
-                        : formatViews(views) + " views"}
+                        ? `${viewers} watching`
+                        : `${formatViews(views)} views`}
                     </span>
                     <span className="whitespace-nowrap dark:text-slate-100">
                       {publishedTimeText}

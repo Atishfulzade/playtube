@@ -11,6 +11,7 @@ import { default as VideoCard } from "./VideoCard";
 import { default as SuggestionPage } from "./SuggestionPage";
 import { default as SettingSideBarOption } from "./SettingSideBarOption";
 import { default as AuthenticationPage } from "./AuthenticationPage";
+import { default as Comments } from "./Comments";
 
 export {
   Navbar,
@@ -20,6 +21,7 @@ export {
   SettingSideBarOption,
   Layout,
   Loader,
+  Comments,
   SearchBar,
   SettingSidebar,
   SuggestionPage,

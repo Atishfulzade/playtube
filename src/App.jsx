@@ -6,7 +6,6 @@ import Layout from "./components/Layout";
 import { setIsMobile } from "./redux_Store/windowSizeSlice";
 import { lazy, Suspense } from "react";
 import { AuthenticationPage, Loader } from "./components";
-import { Comedy } from "./pages";
 
 // Lazy load pages
 const ChannelDetails = lazy(() => import("./pages/ChannelDetails"));
@@ -29,7 +28,7 @@ const Sports = lazy(() => import("./pages/Sports"));
 const Course = lazy(() => import("./pages/Course"));
 const Fashion = lazy(() => import("./pages/Fashion"));
 const Podcast = lazy(() => import("./pages/Podcast"));
-const Camedy = lazy(() => import("./pages/Comedy"));
+const Comedy = lazy(() => import("./pages/Comedy"));
 
 function App() {
   const dispatch = useDispatch();
